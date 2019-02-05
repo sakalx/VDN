@@ -17,9 +17,7 @@ gulp.task('connect', function() {
 gulp.task('js', function() {
     browserify('./src/index.js')
         .transform(babelify)
-        .bundle().on('error', function (e){
-            console.log(e)
-        })
+        .bundle()
         .pipe(source('index.js'))
         .pipe(gulp.dest('./dist/js'))
         .pipe(connect.reload());
