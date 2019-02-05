@@ -4,7 +4,7 @@ var connect = require('gulp-connect');
 var browserify = require('browserify');
 var babelify = require('babelify'); // Converts jsx to js
 var source = require('vinyl-source-stream'); // Converts string to a 
-/*
+/* cooper s - in case I want to run it via server, but I prefer bundled url
 gulp.task('connect', function() {
     connect.server({
         base: 'http://localhost', 

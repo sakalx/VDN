@@ -4,7 +4,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-     <div>Currently using React {React.version}</div>,
+     <div>Currently using React {React.version}</div>
       </div>
     );
   }

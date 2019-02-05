@@ -1,0 +1,170 @@
+* 
+  -moz-box-sizing: border-box
+  -webkit-box-sizing: border-box
+  box-sizing: border-box
+
+html 
+  height: 100%
+
+body
+  //background: url('https://66.media.tumblr.com/d51a2a2502f70238adbb0c242c4e89dd/tumblr_ocqdob8xcZ1s8iqo7o1_1280.gif') no-repeat
+  //background: url('../img/background.jpg')
+  background: #fff
+  background-size: 100% 100%
+  font-family: Arial
+  +at-breakpoint($phone)
+    background: #666
+
+p
+  color: #333
+
+h3
+  color: #ccc
+  
+.mainScrn
+  +span-columns(12)
+  background: #fff
+  //padding: 1em
+  color: #333
+  margin-left: auto
+  +span-columns(12)
+  margin-right: auto
+  box-shadow: 0 0 5px rgba(0, 0, 0, .5)
+  +at-breakpoint($phone)
+    +span-columns(12)
+
+.pane
+  background: #f5f5f5
+  +span-columns(4)
+  height: 20em
+  float: left
+  padding: 1em
+  border: 1px solid #333
+  img
+    margin-left: 2em
+
+.pane2
+  background: aqua
+  +span-columns(12)
+  height: 10em
+  float: left
+  padding: 1em
+
+.leftpane
+  background: #f5f5f5
+  height: 30em
+  +span-columns(3)
+  float: left
+  padding: 1em
+  border: 1px solid #333
+  margin: 0
+
+.navbar
+  background:  #fff
+  +span-columns(12)
+  height: 2em
+  margin: 1em
+  padding: 0.5em
+
+.navBtn
+  background: #f5f5f5
+  padding: 0.2em
+  font-size: 0.75em
+  color: #333
+  cursor: pointer
+  +span-columns(1)
+  margin-bottom: 0.5em
+  float: left
+
+.longBtn
+  +span-columns(2)
+
+.btn
+  background: #f5f5f5
+  padding: 0.5em
+  font-size: 1em
+  color: #333
+  cursor: pointer
+  +span-columns(12)
+  margin-bottom: 0.5em
+
+.closeBtn
+  cursor: pointer
+  +span-columns(2)
+  background: #f5f5f5
+  font-size: 1em
+  float: right
+
+.homeBtn
+  float: right
+  cursor: pointer
+  +span-columns(2)
+  background: #ccc
+  font-size: 1em
+
+.right
+  float: right
+
+.dropdown
+  background: #ccc
+  margin: 0.5em
+  padding: 0.5em
+  color: #333
+  cursor: pointer
+  float: left
+
+.alerts
+  background: #f5f5f5
+  //+span-columns(9)
+  width: 73%
+  height: 10em
+  float: right
+  margin: 1em
+  padding: 1em
+  border: 1px solid #333
+
+.doorStation
+  background: #333
+  +span-columns(12)
+  padding: 1em
+  height: 10em
+  float: left
+  font-size: 1em
+  color: #ccc
+
+.nolist 
+  list-style: none
+  background: aqua
+
+ul 
+  li
+    list-style: none
+
+.noPadding
+  padding: 0
+
+.right 
+  float: right
+
+.noBorder
+  border: none
+
+p
+  .fontStyle
+    color: red
+
+//tab styling
+.tab-list 
+  border-bottom: 1px solid #ccc
+  padding-left: 0
+
+.tab-list-item 
+  display: inline-block
+  list-style: none
+  margin-bottom: -1px
+  padding: 0.5rem 0.75rem
+
+.tab-list-active 
+  background-color: white
+  border: solid #ccc
+  border-width: 1px 1px 0 1px

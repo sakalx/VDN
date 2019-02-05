@@ -4,6 +4,9 @@
 /node_modules
 /.pnp
 .pnp.js
+bundle.js
+npm-debug.log
+.sass-cache
 
 # testing
 /coverage
