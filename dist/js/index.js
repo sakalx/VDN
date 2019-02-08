@@ -35954,7 +35954,7 @@ var App = function (_Component) {
         _react2.default.createElement(
           'div',
           null,
-          'Master View Controller (MVC) v.0.0.2'
+          'Master View Controller (MVC) v.0.0.2a'
         ),
         _react2.default.createElement(
           'div',
@@ -35969,7 +35969,7 @@ var App = function (_Component) {
           }, onRegister: function onRegister(data) {
             console.log("onRegister");
           }, visible: this.props.state.screen, state: this.props.state, store: this.props.store }),
-        _react2.default.createElement(_mainscreen2.default, null)
+        _react2.default.createElement(_mainscreen2.default, { store: this.props.store })
       );
     }
   }]);
@@ -35979,7 +35979,7 @@ var App = function (_Component) {
 
 exports.default = App;
 
-},{"./components/login.js":134,"./components/mainscreen.js":135,"./utils/getBuildingData.js":140,"./utils/getLogData.js":141,"./utils/getOpsData.js":142,"react":91}],133:[function(require,module,exports){
+},{"./components/login.js":134,"./components/mainscreen.js":135,"./utils/getBuildingData.js":141,"./utils/getLogData.js":142,"./utils/getOpsData.js":143,"react":91}],133:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -36223,7 +36223,7 @@ exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -36238,6 +36238,10 @@ var _index = require('../actions/index');
 
 var _redux = require('redux');
 
+var _GenericClass = require('../containers/GenericClass');
+
+var _GenericClass2 = _interopRequireDefault(_GenericClass);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -36247,77 +36251,133 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var MainScreen = function (_React$Component) {
-    _inherits(MainScreen, _React$Component);
+  _inherits(MainScreen, _React$Component);
 
-    function MainScreen(props) {
-        _classCallCheck(this, MainScreen);
+  function MainScreen(props) {
+    _classCallCheck(this, MainScreen);
 
-        var _this = _possibleConstructorReturn(this, (MainScreen.__proto__ || Object.getPrototypeOf(MainScreen)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (MainScreen.__proto__ || Object.getPrototypeOf(MainScreen)).call(this, props));
 
-        _this.state = {
-            endpoint: "http://192.168.2.17:7250/",
-            dataList: [],
-            logList: [],
-            opList: [],
-            notification: {
-                "test": "data "
-            } //end state
-        };return _this;
-    } //end constructor
+    _this.state = {
+      endpoint: "http://192.168.2.17:7250/",
+      dataList: [],
+      logList: [],
+      opList: [],
+      notification: {
+        "test": "data "
+      } //end state
+    };return _this;
+  } //end constructor
 
-    _createClass(MainScreen, [{
-        key: 'componentWillMount',
-        value: function componentWillMount() {} //end componentWillMount
+  _createClass(MainScreen, [{
+    key: 'componentWillMount',
+    value: function componentWillMount() {
+      this.props.store.dispatch({ type: "NEW_NOTIFY", payload: this.state.notification });
+    } //end componentWillMount
 
-    }, {
-        key: 'render',
-        value: function render() {
-            var _this2 = this;
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
 
-            if (this.props.screen != 'Main Screen') {
-                console.log("Main Screen is off");
-                return false;
-            }
+      if (this.props.screen != 'Main Screen') {
+        console.log("Main Screen is off");
+        return false;
+      }
 
-            return _react2.default.createElement(
-                'div',
-                { className: 'center option animated fadeIn mainScrn' },
-                _react2.default.createElement('br', null),
-                _react2.default.createElement('br', null),
-                _react2.default.createElement(
-                    'button',
-                    { className: 'closeBtn', onClick: function onClick() {
-                            return _this2.props.closeScreen("Close Screen");
-                        } },
-                    'Logout'
-                ),
-                _react2.default.createElement('br', null),
-                _react2.default.createElement('br', null)
-            );
-        } //end render
+      console.log("Mainscreen - store: ", this.props.store);
+      console.log("Mainscreen - Reducer state: ", this.props.reducerdata);
+      console.log("Mainscreen - current local state notification: ", this.state.notification);
+      return _react2.default.createElement(
+        'div',
+        { className: 'center option animated fadeIn mainScrn' },
+        _react2.default.createElement('br', null),
+        _react2.default.createElement('br', null),
+        _react2.default.createElement(
+          'button',
+          { className: 'closeBtn', onClick: function onClick() {
+              return _this2.props.closeScreen("Close Screen");
+            } },
+          'Logout'
+        ),
+        _react2.default.createElement('br', null),
+        _react2.default.createElement('br', null),
+        _react2.default.createElement(
+          'button',
+          { className: 'alertBtn', onClick: function onClick() {
+              return _this2.props.store.dispatch({ type: "NEW_NOTIFY", payload: { "test": "fug you!" } });
+            } },
+          'Logout'
+        ),
+        _react2.default.createElement('br', null),
+        _react2.default.createElement('br', null),
+        _react2.default.createElement(_GenericClass2.default, { alert: this.props.reducerdata })
+      );
+    } //end render
 
-    }]);
+  }]);
 
-    return MainScreen;
+  return MainScreen;
 }(_react2.default.Component); //end component
 
 
 function mapStateToProps(state) {
-    console.log("MainScreen - current state to map: ", state);
-    return {
-        data: state.mydata,
-        screen: state.screen
-    };
+  //console.log("MainScreen - current state to map: ", state);
+  return {
+    reducerdata: state.mydata,
+    screen: state.screen
+  };
 } //end mapStateToProps
 
 
 function mapDispatchToProps(dispatch) {
-    return (0, _redux.bindActionCreators)({ firstScreen: _index.firstScreen, secondScreen: _index.secondScreen, thirdScreen: _index.thirdScreen, fourthScreen: _index.fourthScreen, newNotification: _index.newNotification, closeScreen: _index.closeScreen }, dispatch);
+  return (0, _redux.bindActionCreators)({ firstScreen: _index.firstScreen, secondScreen: _index.secondScreen, thirdScreen: _index.thirdScreen, fourthScreen: _index.fourthScreen, newNotification: _index.newNotification, closeScreen: _index.closeScreen }, dispatch);
 } //end mapDispatchToProps
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(MainScreen);
 
-},{"../actions/index":133,"react":91,"react-redux":73,"redux":97}],136:[function(require,module,exports){
+},{"../actions/index":133,"../containers/GenericClass":136,"react":91,"react-redux":73,"redux":97}],136:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function GenericClass(props) {
+    var alert = props.alert;
+
+    console.log("Generic Class alert: ", alert.notification.test);
+
+    return _react2.default.createElement(
+        "div",
+        null,
+        _react2.default.createElement(
+            "h1",
+            null,
+            " Generic Class "
+        ),
+        _react2.default.createElement(
+            "p",
+            null,
+            alert.notification.test
+        ),
+        _react2.default.createElement(
+            "p",
+            null,
+            "End"
+        )
+    );
+}
+GenericClass.propTypes = {};
+exports.default = GenericClass;
+
+},{"react":91}],137:[function(require,module,exports){
 'use strict';
 
 var _react = require('react');
@@ -36352,15 +36412,18 @@ _reactDom2.default.render(_react2.default.createElement(
     _react2.default.createElement(_App2.default, { store: store, state: store.getState() })
 ), document.getElementById('app'));
 
-},{"./App":132,"./reducers":138,"react":91,"react-dom":70,"react-redux":73,"redux":97}],137:[function(require,module,exports){
+},{"./App":132,"./reducers":139,"react":91,"react-dom":70,"react-redux":73,"redux":97}],138:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var initialState = [{
     results: [],
+    notification: [],
     error: null
 }];
 
@@ -36373,7 +36436,9 @@ var dataReducer = function dataReducer() {
     switch (action.type) {
         case 'NEW_NOTIFY':
             console.log('NEW Notification payload: ', action.payload);
-            return action.payload;
+            state = _extends({}, state, {
+                notification: action.payload
+            });
             break;
     }
 
@@ -36382,7 +36447,7 @@ var dataReducer = function dataReducer() {
 
 exports.default = dataReducer;
 
-},{}],138:[function(require,module,exports){
+},{}],139:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -36409,7 +36474,7 @@ var rootReducer = (0, _redux.combineReducers)({
 
 exports.default = rootReducer;
 
-},{"./dataReducer":137,"./screenReducer":139,"redux":97}],139:[function(require,module,exports){
+},{"./dataReducer":138,"./screenReducer":140,"redux":97}],140:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -36458,7 +36523,7 @@ var screenReducer = function screenReducer() {
 
 exports.default = screenReducer;
 
-},{}],140:[function(require,module,exports){
+},{}],141:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -36488,7 +36553,7 @@ function getBuildingData() {
   });
 }
 
-},{"axios":3}],141:[function(require,module,exports){
+},{"axios":3}],142:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -36518,7 +36583,7 @@ function getLogData() {
   });
 }
 
-},{"axios":3}],142:[function(require,module,exports){
+},{"axios":3}],143:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -36548,4 +36613,4 @@ function getOpsData() {
   });
 }
 
-},{"axios":3}]},{},[136]);
+},{"axios":3}]},{},[137]);

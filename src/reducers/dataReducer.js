@@ -2,6 +2,7 @@
 const initialState = [
     {
         results: [],
+        notification: [],
         error: null
     }
 ]
@@ -12,7 +13,10 @@ const dataReducer = (state=initialState, action) => {
     switch(action.type) {
         case 'NEW_NOTIFY':
             console.log('NEW Notification payload: ', action.payload );
-            return action.payload;
+            state = { 
+                ...state, 
+                notification: action.payload
+            };
         break;
     }
 

@@ -11,7 +11,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div>Master View Controller (MVC) v.0.0.2</div>
+        <div>Master View Controller (MVC) v.0.0.2a</div>
         <div>Currently using React {React.version}</div>
         <br/><br/>
         <Login onLogin={ event =>{
@@ -20,7 +20,7 @@ class App extends Component {
           console.log("onRegister")
         }} visible={this.props.state.screen} state={this.props.state} store={this.props.store}/>
       
-        <MainScreen />
+        <MainScreen store={this.props.store }/>
       </div>
     );
   }
