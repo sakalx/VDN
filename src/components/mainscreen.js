@@ -5,7 +5,7 @@ import { closeScreen } from '../actions/index';
 
 import { bindActionCreators } from 'redux';
 
-import { firstScreen, secondScreen, thirdScreen, fourthScreen, newNotification } from '../actions/index';
+import { newNotification } from '../actions/index';
 
 import GenericClass from '../containers/GenericClass'
 
@@ -14,9 +14,6 @@ class MainScreen extends React.Component {
         super(props);
         this.state = {
           endpoint: "http://192.168.2.17:7250/",
-          dataList: [],
-          logList: [],
-          opList: [],
           notification: {
             "test" : "data "
           }
@@ -42,7 +39,7 @@ class MainScreen extends React.Component {
                     
           <button className="closeBtn" onClick={()=> this.props.closeScreen("Close Screen")}>Logout</button>
           <br/><br/>
-          <button className="alertBtn" onClick={()=> this.props.store.dispatch({type: "NEW_NOTIFY", payload: {"test": "fug you!"} })}>Logout</button>
+          <button className="alertBtn" onClick={()=> this.props.store.dispatch({type: "NEW_NOTIFY", payload: [{"test": "fug you!"}] })}>Logout</button>
           <br/><br />
           <GenericClass alert={this.props.reducerdata }  />
         </div>
@@ -61,7 +58,7 @@ function mapStateToProps(state) {
 
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({firstScreen, secondScreen, thirdScreen, fourthScreen, newNotification, closeScreen}, dispatch )
+    return bindActionCreators({ newNotification, closeScreen}, dispatch )
 }//end mapDispatchToProps
     
 export default connect(mapStateToProps, mapDispatchToProps) (MainScreen)

@@ -36260,9 +36260,6 @@ var MainScreen = function (_React$Component) {
 
     _this.state = {
       endpoint: "http://192.168.2.17:7250/",
-      dataList: [],
-      logList: [],
-      opList: [],
       notification: {
         "test": "data "
       } //end state
@@ -36305,7 +36302,7 @@ var MainScreen = function (_React$Component) {
         _react2.default.createElement(
           'button',
           { className: 'alertBtn', onClick: function onClick() {
-              return _this2.props.store.dispatch({ type: "NEW_NOTIFY", payload: { "test": "fug you!" } });
+              return _this2.props.store.dispatch({ type: "NEW_NOTIFY", payload: [{ "test": "fug you!" }] });
             } },
           'Logout'
         ),
@@ -36331,7 +36328,7 @@ function mapStateToProps(state) {
 
 
 function mapDispatchToProps(dispatch) {
-  return (0, _redux.bindActionCreators)({ firstScreen: _index.firstScreen, secondScreen: _index.secondScreen, thirdScreen: _index.thirdScreen, fourthScreen: _index.fourthScreen, newNotification: _index.newNotification, closeScreen: _index.closeScreen }, dispatch);
+  return (0, _redux.bindActionCreators)({ newNotification: _index.newNotification, closeScreen: _index.closeScreen }, dispatch);
 } //end mapDispatchToProps
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(MainScreen);
@@ -36352,7 +36349,14 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function GenericClass(props) {
     var alert = props.alert;
 
-    console.log("Generic Class alert: ", alert.notification.test);
+    console.log("Generic Class alert: ", alert.notification);
+
+    var testArr = [1, 2, 3, 4, 5];
+    var objArr = [{
+        test: "ipsoquidl"
+    }, {
+        test: "zowie"
+    }];
 
     return _react2.default.createElement(
         "div",
@@ -36365,7 +36369,13 @@ function GenericClass(props) {
         _react2.default.createElement(
             "p",
             null,
-            alert.notification.test
+
+            //alert.notification.test
+            // alert.map(() => {console.log("hey")})
+            //testArr
+            objArr.map(function (obj) {
+                console.log("can I read this array: ", obj.test);
+            })
         ),
         _react2.default.createElement(
             "p",
