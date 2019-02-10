@@ -36309,6 +36309,31 @@ var MainScreen = function (_React$Component) {
       console.log("Mainscreen - current local state notification: ", this.state.notification);
 
       var timeStamp = Date().toString();
+      var testData = [{
+        prop: "timestamp",
+        name: timeStamp
+      }, {
+        prop: "firstname",
+        name: "Harry"
+      }, {
+        prop: "lastname",
+        name: "Truman"
+      }, {
+        prop: timeStamp + 60,
+        name: "duration"
+      }, {
+        prop: "doorstation",
+        name: "Front Door"
+      }, {
+        prop: "building",
+        name: "135 5th Street"
+      }, {
+        prop: "attended",
+        name: "jbronowski"
+      }, {
+        prop: "alarmtype",
+        name: "1-A"
+      }];
 
       return _react2.default.createElement(
         'div',
@@ -36327,31 +36352,7 @@ var MainScreen = function (_React$Component) {
         _react2.default.createElement(
           'button',
           { className: 'alertBtn', onClick: function onClick() {
-              return _this2.props.store.dispatch({ type: "NEW_NOTIFY", payload: [{
-                  prop: "timestamp",
-                  name: timeStamp
-                }, {
-                  prop: "firstname",
-                  name: "Harry"
-                }, {
-                  prop: "lastname",
-                  name: "Truman"
-                }, {
-                  prop: timeStamp + 60,
-                  name: "duration"
-                }, {
-                  prop: "doorstation",
-                  name: "Front Door"
-                }, {
-                  prop: "building",
-                  name: "135 5th Street"
-                }, {
-                  prop: "attended",
-                  name: "jbronowski"
-                }, {
-                  prop: "alarmtype",
-                  name: "1-A"
-                }] });
+              return _this2.props.store.dispatch({ type: "NEW_NOTIFY", payload: testData });
             } },
           'Update'
         ),

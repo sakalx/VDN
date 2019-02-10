@@ -66,45 +66,46 @@ class MainScreen extends React.Component {
    console.log("Mainscreen - current local state notification: ", this.state.notification );
 
    const timeStamp = Date().toString();
+   const testData = [
+    {
+      prop: "timestamp",
+      name: timeStamp
+    },
+    {
+      prop : "firstname",
+      name: "Harry"
+    },
+    {
+      prop : "lastname",
+      name: "Truman"
+    },
+    {
+      prop : timeStamp + 60,
+      name: "duration"
+    },
+    {
+      prop : "doorstation",
+      name: "Front Door"
+    },
+    {
+      prop : "building",
+      name: "135 5th Street"
+    },
+    {
+      prop : "attended",
+      name: "jbronowski"
+    },
+    {
+      prop : "alarmtype",
+      name: "1-A"
+    },
+  ];
 
       return (
         <div className='center option animated fadeIn mainScrn'><br/><br/>      
           <button className="closeBtn" onClick={()=> this.props.closeScreen("Close Screen")}>Logout</button>
           <br/><br/>
-          <button className="alertBtn" onClick={()=> this.props.store.dispatch( { type: "NEW_NOTIFY", payload: [
-              {
-                prop: "timestamp",
-                name: timeStamp
-              },
-              {
-                prop : "firstname",
-                name: "Harry"
-              },
-              {
-                prop : "lastname",
-                name: "Truman"
-              },
-              {
-                prop : timeStamp + 60,
-                name: "duration"
-              },
-              {
-                prop : "doorstation",
-                name: "Front Door"
-              },
-              {
-                prop : "building",
-                name: "135 5th Street"
-              },
-              {
-                prop : "attended",
-                name: "jbronowski"
-              },
-              {
-                prop : "alarmtype",
-                name: "1-A"
-              },
-            ] })}>Update</button>
+          <button className="alertBtn" onClick={()=> this.props.store.dispatch( { type: "NEW_NOTIFY", payload: testData })}>Update</button>
           <br/><br />
           <GenericClass alert={this.props.reducerdata }  />
         </div>
