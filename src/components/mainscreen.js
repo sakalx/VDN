@@ -14,9 +14,10 @@ class MainScreen extends React.Component {
         super(props);
         this.state = {
           endpoint: "http://192.168.2.17:7250/",
-          notification: {
-            "test" : "data "
-          }
+          notification: [{
+            "test" : "data ",
+            "test2": "data2"
+          }]
         }//end state
       }//end constructor
 

@@ -3,7 +3,10 @@ import React from 'react';
 function GenericClass(props) {
 
     const { alert } = props;
-    console.log("Generic Class alert: ", alert.notification)
+    console.log("Generic Class alert: ", alert.notification[0].test)
+
+    const alertArr = alert.notication;
+   // console.log("Generic Class alertArr: ", alertArr)
 
     const testArr = [1,2,3,4,5];
     const objArr = [
@@ -18,16 +21,18 @@ function GenericClass(props) {
     return (
         <div>
             <h1> Generic Class </h1>
-             <p>
-             {
-                 //alert.notification.test
-                // alert.map(() => {console.log("hey")})
-                //testArr
-                objArr.map((obj)=> {console.log("can I read this array: ", obj.test )})
-             }
-
+            
+            {
+               alert.notification.map((obj, i )=> {
+                    console.log("can I read this array: ", obj.test )
+                     {obj.data} 
+                     return <p key={i}>{obj.test}</p>
+                })
+            }
+            <hr></hr>
+                        { alert.notification.test }
                 
-            </p>
+        
              <p>End</p>
          </div>
     )

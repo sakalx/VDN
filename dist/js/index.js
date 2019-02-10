@@ -36260,9 +36260,10 @@ var MainScreen = function (_React$Component) {
 
     _this.state = {
       endpoint: "http://192.168.2.17:7250/",
-      notification: {
-        "test": "data "
-      } //end state
+      notification: [{
+        "test": "data ",
+        "test2": "data2"
+      }] //end state
     };return _this;
   } //end constructor
 
@@ -36349,7 +36350,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function GenericClass(props) {
     var alert = props.alert;
 
-    console.log("Generic Class alert: ", alert.notification);
+    console.log("Generic Class alert: ", alert.notification[0].test);
+
+    var alertArr = alert.notication;
+    // console.log("Generic Class alertArr: ", alertArr)
 
     var testArr = [1, 2, 3, 4, 5];
     var objArr = [{
@@ -36366,17 +36370,19 @@ function GenericClass(props) {
             null,
             " Generic Class "
         ),
-        _react2.default.createElement(
-            "p",
-            null,
-
-            //alert.notification.test
-            // alert.map(() => {console.log("hey")})
-            //testArr
-            objArr.map(function (obj) {
-                console.log("can I read this array: ", obj.test);
-            })
-        ),
+        alert.notification.map(function (obj, i) {
+            console.log("can I read this array: ", obj.test);
+            {
+                obj.data;
+            }
+            return _react2.default.createElement(
+                "p",
+                { key: i },
+                obj.test
+            );
+        }),
+        _react2.default.createElement("hr", null),
+        alert.notification.test,
         _react2.default.createElement(
             "p",
             null,
