@@ -35954,7 +35954,7 @@ var App = function (_Component) {
         _react2.default.createElement(
           'div',
           null,
-          'Master View Controller (MVC) v.0.0.2a'
+          'Master View Controller (MVC) v.0.0.2b'
         ),
         _react2.default.createElement(
           'div',
@@ -36261,8 +36261,8 @@ var MainScreen = function (_React$Component) {
     _this.state = {
       endpoint: "http://192.168.2.17:7250/",
       notification: [{
-        "test": "data ",
-        "test2": "data2"
+        prop: "timeStamp",
+        name: "timestamp"
       }] //end state
     };return _this;
   } //end constructor
@@ -36291,6 +36291,7 @@ var MainScreen = function (_React$Component) {
         { className: 'center option animated fadeIn mainScrn' },
         _react2.default.createElement('br', null),
         _react2.default.createElement('br', null),
+        'TEST',
         _react2.default.createElement(
           'button',
           { className: 'closeBtn', onClick: function onClick() {
@@ -36303,7 +36304,7 @@ var MainScreen = function (_React$Component) {
         _react2.default.createElement(
           'button',
           { className: 'alertBtn', onClick: function onClick() {
-              return _this2.props.store.dispatch({ type: "NEW_NOTIFY", payload: [{ "test": "fug you!" }] });
+              return _this2.props.store.dispatch({ type: "NEW_NOTIFY", payload: [{ prop: "fug you!" }, { name: "Tex" }] });
             } },
           'Logout'
         ),
@@ -36350,10 +36351,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function GenericClass(props) {
     var alert = props.alert;
 
-    console.log("Generic Class alert: ", alert.notification[0].test);
+    console.log("Generic Class alert: ", alert.notification[0].name);
 
     var alertArr = alert.notication;
-    // console.log("Generic Class alertArr: ", alertArr)
+    //console.log("Generic Class alertArr: ", alertArr)
 
     var testArr = [1, 2, 3, 4, 5];
     var objArr = [{
@@ -36371,14 +36372,14 @@ function GenericClass(props) {
             " Generic Class "
         ),
         alert.notification.map(function (obj, i) {
-            console.log("can I read this array: ", obj.test);
+            console.log("can I read this array: ", obj.prop);
             {
-                obj.data;
+                obj.name;
             }
             return _react2.default.createElement(
                 "p",
                 { key: i },
-                obj.test
+                obj.name
             );
         }),
         _react2.default.createElement("hr", null),

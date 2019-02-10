@@ -15,8 +15,8 @@ class MainScreen extends React.Component {
         this.state = {
           endpoint: "http://192.168.2.17:7250/",
           notification: [{
-            "test" : "data ",
-            "test2": "data2"
+            prop : "timeStamp",
+            name: "timestamp"
           }]
         }//end state
       }//end constructor
@@ -37,10 +37,10 @@ class MainScreen extends React.Component {
    console.log("Mainscreen - current local state notification: ", this.state.notification );
       return (
         <div className='center option animated fadeIn mainScrn'><br/><br/> 
-                    
+             TEST       
           <button className="closeBtn" onClick={()=> this.props.closeScreen("Close Screen")}>Logout</button>
           <br/><br/>
-          <button className="alertBtn" onClick={()=> this.props.store.dispatch({type: "NEW_NOTIFY", payload: [{"test": "fug you!"}] })}>Logout</button>
+          <button className="alertBtn" onClick={()=> this.props.store.dispatch({type: "NEW_NOTIFY", payload: [{prop: "fug you!"},{name: "Tex"}] })}>Logout</button>
           <br/><br />
           <GenericClass alert={this.props.reducerdata }  />
         </div>

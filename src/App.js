@@ -11,7 +11,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div>Master View Controller (MVC) v.0.0.2a</div>
+        <div>Master View Controller (MVC) v.0.0.2b</div>
         <div>Currently using React {React.version}</div>
         <br/><br/>
         <Login onLogin={ event =>{
