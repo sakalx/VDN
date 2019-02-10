@@ -36169,6 +36169,7 @@ var LoginComponent = function (_Component) {
         prop: "alarmtype",
         name: data.alarmType
       }];
+
       this.props.store.dispatch({ type: "NEW_NOTIFY", payload: dataArr });
     }
   }, {
@@ -36185,6 +36186,7 @@ var LoginComponent = function (_Component) {
         _this2.setState({
           response: data
         });
+        _this2.state.logList.push(data);
         _this2.testNotify(data);
       });
 
@@ -36449,9 +36451,10 @@ function GenericClass(props) {
             console.log("can I read this array: ", obj.prop);
 
             return _react2.default.createElement(
-                "p",
+                "span",
                 { key: i },
-                obj.name
+                obj.name,
+                " "
             );
         }),
         _react2.default.createElement("hr", null),

@@ -69,7 +69,9 @@ class LoginComponent extends Component {
         name: data.alarmType
       },
     ]
+   
     this.props.store.dispatch({type: "NEW_NOTIFY", payload: dataArr });
+
   }
 
   componentDidMount() {
@@ -81,6 +83,7 @@ class LoginComponent extends Component {
       this.setState({
          response: data 
       });
+      this.state.logList.push(data);
       this.testNotify(data);
   });
 
