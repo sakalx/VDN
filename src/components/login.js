@@ -33,8 +33,43 @@ class LoginComponent extends Component {
   }
 
   testNotify (data) {
-    console.log("Notification: ",  data, " store: ", this.props.store);
-    this.props.store.dispatch({type: "NEW_NOTIFY", payload: data });
+    console.log("Login - Notification: ",  data, " store: ", this.props.store);
+    const timeStamp = Date().toString;
+    const dataArr = [
+      {
+        prop: "timestamp",
+        name: data.timeStamp
+      },
+      {
+        prop : "firstname",
+        name: data.firstName
+      },
+      {
+        prop : "lastname",
+        name: data.lastName
+      },
+      {
+        prop : timeStamp + 60,
+        name: data.duration
+      },
+      {
+        prop : "doorstation",
+        name: data.doorstation
+      },
+      {
+        prop : "building",
+        name: data.building
+      },
+      {
+        prop : "attended",
+        name: data.attended
+      },
+      {
+        prop : "alarmtype",
+        name: data.alarmType
+      },
+    ]
+    this.props.store.dispatch({type: "NEW_NOTIFY", payload: dataArr });
   }
 
   componentDidMount() {

@@ -13,7 +13,7 @@ class MainScreen extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-          endpoint: "http://192.168.2.17:7250/",
+          endpoint: "http://104.258.110.70:7250/",
           notification: [{
             prop : "timestamp",
             name: "timeStamp"
@@ -53,7 +53,7 @@ class MainScreen extends React.Component {
       componentWillMount() {        
         this.props.store.dispatch({type: "NEW_NOTIFY", payload: this.state.notification })
       }//end componentWillMount
-    
+
    render() {
 
     if (this.props.screen != 'Main Screen') {

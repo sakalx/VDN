@@ -35954,7 +35954,7 @@ var App = function (_Component) {
         _react2.default.createElement(
           'div',
           null,
-          'Master View Controller (MVC) v.0.0.2b'
+          'Master View Controller (MVC) v.0.0.2c'
         ),
         _react2.default.createElement(
           'div',
@@ -36142,8 +36142,34 @@ var LoginComponent = function (_Component) {
   }, {
     key: 'testNotify',
     value: function testNotify(data) {
-      console.log("Notification: ", data, " store: ", this.props.store);
-      this.props.store.dispatch({ type: "NEW_NOTIFY", payload: data });
+      console.log("Login - Notification: ", data, " store: ", this.props.store);
+      var timeStamp = Date().toString;
+      var dataArr = [{
+        prop: "timestamp",
+        name: data.timeStamp
+      }, {
+        prop: "firstname",
+        name: data.firstName
+      }, {
+        prop: "lastname",
+        name: data.lastName
+      }, {
+        prop: timeStamp + 60,
+        name: data.duration
+      }, {
+        prop: "doorstation",
+        name: data.doorstation
+      }, {
+        prop: "building",
+        name: data.building
+      }, {
+        prop: "attended",
+        name: data.attended
+      }, {
+        prop: "alarmtype",
+        name: data.alarmType
+      }];
+      this.props.store.dispatch({ type: "NEW_NOTIFY", payload: dataArr });
     }
   }, {
     key: 'componentDidMount',
@@ -36259,7 +36285,7 @@ var MainScreen = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (MainScreen.__proto__ || Object.getPrototypeOf(MainScreen)).call(this, props));
 
     _this.state = {
-      endpoint: "http://192.168.2.17:7250/",
+      endpoint: "http://104.258.110.70:7250/",
       notification: [{
         prop: "timestamp",
         name: "timeStamp"
