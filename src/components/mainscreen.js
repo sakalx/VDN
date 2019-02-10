@@ -15,9 +15,38 @@ class MainScreen extends React.Component {
         this.state = {
           endpoint: "http://192.168.2.17:7250/",
           notification: [{
-            prop : "timeStamp",
-            name: "timestamp"
-          }]
+            prop : "timestamp",
+            name: "timeStamp"
+          },
+          {
+            prop : "firstname",
+            name: "firstName"
+          },
+          {
+            prop : "lastname",
+            name: "lastName"
+          },
+          {
+            prop : "duration",
+            name: "duration"
+          },
+          {
+            prop : "doorstation",
+            name: "doorStation"
+          },
+          {
+            prop : "building",
+            name: "building"
+          },
+          {
+            prop : "attended",
+            name: "attended"
+          },
+          {
+            prop : "alarmtype",
+            name: "alarmType"
+          },
+        ]
         }//end state
       }//end constructor
 
