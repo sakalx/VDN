@@ -75,7 +75,35 @@ class MainScreen extends React.Component {
               {
                 prop: "timestamp",
                 name: timeStamp
-              }
+              },
+              {
+                prop : "firstname",
+                name: "Harry"
+              },
+              {
+                prop : "lastname",
+                name: "Truman"
+              },
+              {
+                prop : timeStamp + 60,
+                name: "duration"
+              },
+              {
+                prop : "doorstation",
+                name: "Front Door"
+              },
+              {
+                prop : "building",
+                name: "135 5th Street"
+              },
+              {
+                prop : "attended",
+                name: "jbronowski"
+              },
+              {
+                prop : "alarmtype",
+                name: "1-A"
+              },
             ] })}>Update</button>
           <br/><br />
           <GenericClass alert={this.props.reducerdata }  />

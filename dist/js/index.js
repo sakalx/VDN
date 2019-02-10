@@ -36330,6 +36330,27 @@ var MainScreen = function (_React$Component) {
               return _this2.props.store.dispatch({ type: "NEW_NOTIFY", payload: [{
                   prop: "timestamp",
                   name: timeStamp
+                }, {
+                  prop: "firstname",
+                  name: "Harry"
+                }, {
+                  prop: "lastname",
+                  name: "Truman"
+                }, {
+                  prop: timeStamp + 60,
+                  name: "duration"
+                }, {
+                  prop: "doorstation",
+                  name: "Front Door"
+                }, {
+                  prop: "building",
+                  name: "135 5th Street"
+                }, {
+                  prop: "attended",
+                  name: "jbronowski"
+                }, {
+                  prop: "alarmtype",
+                  name: "1-A"
                 }] });
             } },
           'Update'
