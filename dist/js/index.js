@@ -36307,12 +36307,14 @@ var MainScreen = function (_React$Component) {
       console.log("Mainscreen - store: ", this.props.store);
       console.log("Mainscreen - Reducer state: ", this.props.reducerdata);
       console.log("Mainscreen - current local state notification: ", this.state.notification);
+
+      var timeStamp = Date().toString();
+
       return _react2.default.createElement(
         'div',
         { className: 'center option animated fadeIn mainScrn' },
         _react2.default.createElement('br', null),
         _react2.default.createElement('br', null),
-        'TEST',
         _react2.default.createElement(
           'button',
           { className: 'closeBtn', onClick: function onClick() {
@@ -36325,9 +36327,12 @@ var MainScreen = function (_React$Component) {
         _react2.default.createElement(
           'button',
           { className: 'alertBtn', onClick: function onClick() {
-              return _this2.props.store.dispatch({ type: "NEW_NOTIFY", payload: [{ prop: "fug you!" }, { name: "Tex" }] });
+              return _this2.props.store.dispatch({ type: "NEW_NOTIFY", payload: [{
+                  prop: "timestamp",
+                  name: timeStamp
+                }] });
             } },
-          'Logout'
+          'Update'
         ),
         _react2.default.createElement('br', null),
         _react2.default.createElement('br', null),
@@ -36394,9 +36399,7 @@ function GenericClass(props) {
         ),
         alert.notification.map(function (obj, i) {
             console.log("can I read this array: ", obj.prop);
-            {
-                obj.name;
-            }
+
             return _react2.default.createElement(
                 "p",
                 { key: i },
@@ -36404,7 +36407,6 @@ function GenericClass(props) {
             );
         }),
         _react2.default.createElement("hr", null),
-        alert.notification.test,
         _react2.default.createElement(
             "p",
             null,

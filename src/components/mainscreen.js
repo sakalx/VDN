@@ -64,12 +64,19 @@ class MainScreen extends React.Component {
    console.log("Mainscreen - store: ", this.props.store );
    console.log ("Mainscreen - Reducer state: ", this.props.reducerdata );
    console.log("Mainscreen - current local state notification: ", this.state.notification );
+
+   const timeStamp = Date().toString();
+
       return (
-        <div className='center option animated fadeIn mainScrn'><br/><br/> 
-             TEST       
+        <div className='center option animated fadeIn mainScrn'><br/><br/>      
           <button className="closeBtn" onClick={()=> this.props.closeScreen("Close Screen")}>Logout</button>
           <br/><br/>
-          <button className="alertBtn" onClick={()=> this.props.store.dispatch({type: "NEW_NOTIFY", payload: [{prop: "fug you!"},{name: "Tex"}] })}>Logout</button>
+          <button className="alertBtn" onClick={()=> this.props.store.dispatch( { type: "NEW_NOTIFY", payload: [
+              {
+                prop: "timestamp",
+                name: timeStamp
+              }
+            ] })}>Update</button>
           <br/><br />
           <GenericClass alert={this.props.reducerdata }  />
         </div>

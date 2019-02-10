@@ -25,12 +25,11 @@ function GenericClass(props) {
             {
                alert.notification.map((obj, i )=> {
                     console.log("can I read this array: ", obj.prop)
-                     {obj.name} 
+
                      return <p key={i}>{obj.name}</p>
                 }) 
             }
             <hr></hr>
-                        { alert.notification.test }
                 
         
              <p>End</p>
