@@ -107,7 +107,7 @@ class MainScreen extends React.Component {
           <br/><br/>
           <button className="alertBtn" onClick={()=> this.props.store.dispatch( { type: "NEW_NOTIFY", payload: testData })}>Update</button>
           <br/><br />
-          <GenericClass alert={this.props.reducerdata }  />
+          <GenericClass alert={this.props.reducerdata }  notifications={this.props.notications} />
         </div>
       )
    }//end render
