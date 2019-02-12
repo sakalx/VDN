@@ -36719,6 +36719,13 @@ var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function selectAlert(e) {
+    //event.preventDefault();
+    console.log("Selected: ", e.target);
+    e.target.classList.remove('alert');
+    e.target.classList.add('selected');
+} //end selectAlert
+
 function rowWrapper(row) {
     var i = 0;
 
@@ -36726,11 +36733,11 @@ function rowWrapper(row) {
         i++;
         return _react2.default.createElement(
             'span',
-            { key: i, style: { backgroundColor: 'red' } },
+            { key: i },
             x.name
         );
     });
-}
+} //end rowWrapper
 
 function GenericClass(props) {
     var alert = props.alert;
@@ -36742,7 +36749,7 @@ function GenericClass(props) {
         k++;
         return _react2.default.createElement(
             'p',
-            { key: k },
+            { key: k, className: 'alert', onClick: selectAlert },
             rowWrapper(top_level)
         );
     });

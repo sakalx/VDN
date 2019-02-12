@@ -1,12 +1,20 @@
 import React from 'react';
+
+function selectAlert(e) {
+    //event.preventDefault();
+    console.log("Selected: ", e.target );
+    e.target.classList.remove('alert');
+    e.target.classList.add('selected');
+}//end selectAlert
+
 function rowWrapper(row){
     let i = 0;
 
     return row.map(x=>{
         i++
-        return <span key={i} style={{backgroundColor:'red'}}>{x.name}</span>
+        return <span key={i}>{x.name}</span>
     })
-}
+}//end rowWrapper
 
 function GenericClass(props) {
 
@@ -16,11 +24,9 @@ function GenericClass(props) {
     let k=0
     return alert.notifications.map( top_level => {
         k++
-        return <p key={k}>{rowWrapper(top_level)}</p>
-
-        
+        return <p key={k} className="alert" onClick={selectAlert}>{rowWrapper(top_level)}</p>  
     })
-    
+
   }//end GenericClass
 
 GenericClass.propTypes = {
