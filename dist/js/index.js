@@ -36682,7 +36682,7 @@ var MainScreen = function (_React$Component) {
         ),
         _react2.default.createElement('br', null),
         _react2.default.createElement('br', null),
-        _react2.default.createElement(_GenericClass2.default, { alert: this.props.reducerdata, notifications: this.props.notications })
+        _react2.default.createElement(_GenericClass2.default, { alert: this.props.reducerdata, notifications: this.props.notification })
       );
     } //end render
 
@@ -36703,101 +36703,139 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return (0, _redux.bindActionCreators)({ newNotification: _index.newNotification, closeScreen: _index.closeScreen }, dispatch);
-} //end mapDispatchToProps
-
+} //end mapDispatchToPropsgu
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(MainScreen);
 
 },{"../actions/index":136,"../containers/GenericClass":139,"react":94,"react-redux":76,"redux":100}],139:[function(require,module,exports){
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _react = require("react");
+var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function rowWrapper(row) {
+    var i = 0;
+
+    return row.map(function (x) {
+        i++;
+        return _react2.default.createElement(
+            'span',
+            { key: i, style: { backgroundColor: 'red' } },
+            x.name
+        );
+    });
+}
 
 function GenericClass(props) {
     var alert = props.alert;
 
     console.log("Generic Class alert: ", alert.notification[0].name);
     console.log("Generic Class notifications: ", alert.notifications);
-
-    var testArr = [1, 2, 3, 4, 5];
-    var objArr = [{
-        test: "ipsoquidl"
-    }, {
-        test: "zowie"
-    }];
-
-    var string1 = "";
-    var object1 = [{ a: 1, b: 2, c: 3 }];
-
-    for (var property1 in object1) {
-        string1 += object1[property1];
-    }
-
-    console.log("Generic Class test: ", string1);
-    // expected output: "123"
-
-
-    var index = 0;
-
-    var alertList = [];
-    var another;
+    var k = 0;
+    return alert.notifications.map(function (top_level) {
+        k++;
+        return _react2.default.createElement(
+            'p',
+            { key: k },
+            rowWrapper(top_level)
+        );
+    });
 
     for (var i = 0; i < alert.notifications.length; i++) {
         console.log("alert objects: ", alert.notifications[i]);
+
         for (var j = 0; j < alert.notifications[i].length; j++) {
-            console.log("alert.notifications by ij : ", alert.notifications[i][j].name);
-            alertList.push(alert.notifications[i][j].name + "\n\n\n");
+            var line = alert.notifications[i][j].name;
+            console.log("alert.notifications by ij : ", line);
+            alertString += '<p>' + line + '</p>';
         }
-        console.log("GenericClass - Final list of alerts: ", alertList.toString().replace(',', ''));
+        console.log("GenericClass - Final list of alerts: ", alertList.toString());
 
         // alertList = alertList.toString().replace(',',' ');
 
         //alerts.push(alert.notifications[i].toString().replace(',',' '));
-    } //end for loop
+    }
+}
 
-    alert.notifications.map(function (item, i) {
-        console.log("What have we here: ", item);
-        for (i in item) {
+/*
+    const testArr = [1,2,3,4,5];
+    const objArr = [
+        {
+            test : "ipsoquidl"
+        },
+        {
+            test : "zowie"
+        }
+    ];
+
+    var string1 = "";
+    var object1 = [{a: 1, b: 2, c: 3}];
+
+    for (var property1 in object1) {
+    string1 += object1[property1];
+    }
+
+console.log("Generic Class test: ", string1);
+// expected output: "123"
+
+
+   let index = 0;
+
+   var alertString = "";
+   var another
+   
+    for (var i = 0; i < alert.notifications.length ; i++) {
+        console.log("alert objects: ", alert.notifications[i])
+
+        for (var j = 0 ; j < alert.notifications[i].length; j++){
+            let line = alert.notifications[i][j].name ;
+            console.log("alert.notifications by ij : ", line);
+            alertString +=`<p>${line}</p>`;
+        }  
+        console.log("GenericClass - Final list of alerts: ", alertList.toString() );
+
+       // alertList = alertList.toString().replace(',',' ');
+
+        //alerts.push(alert.notifications[i].toString().replace(',',' '));
+
+    }//end for loop
+
+    alert.notifications.map((item, i ) => {
+        console.log("What have we here: ", item );
+        for ( i in item ){ 
             ++i;
-            console.log("key: " + i + "name: ", name);
+            console.log("key: "+ i +"name: ", name )
         }
     });
 
-    return _react2.default.createElement(
-        "div",
-        null,
-        _react2.default.createElement(
-            "h1",
-            null,
-            " Generic Class 10"
-        ),
-        alert.notification.map(function (obj, i) {
-            console.log("can I read this object: ", obj.prop);
-            //alerts.push(obj.name );
 
-            return _react2.default.createElement(
-                "span",
-                { key: i },
-                obj.name,
-                " "
-            );
-        }),
-        _react2.default.createElement("hr", null),
-        alertList,
-        _react2.default.createElement(
-            "p",
-            null,
-            "End"
-        )
-    );
-}
+
+    return (
+        <div>
+            <h1> Generic Class 16</h1>
+            
+            {
+               alert.notification.map((obj, i )=> {
+                    console.log("can I read this object: ", obj.prop)
+                    //alerts.push(obj.name );
+                    
+                    return <span key={i}>{obj.name} </span>
+                }) 
+                
+            }
+            
+             <hr></hr>
+             {alertList}       
+             <p>End</p>
+         </div>
+    )
+}*/
 GenericClass.propTypes = {};
 exports.default = GenericClass;
 

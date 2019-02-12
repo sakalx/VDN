@@ -107,7 +107,7 @@ class MainScreen extends React.Component {
           <br/><br/>
           <button className="alertBtn" onClick={()=> this.props.store.dispatch( { type: "NEW_NOTIFY", payload: testData })}>Update</button>
           <br/><br />
-          <GenericClass alert={this.props.reducerdata }  notifications={this.props.notications} />
+          <GenericClass alert={this.props.reducerdata }  notifications={this.props.notification} />
         </div>
       )
    }//end render
@@ -125,6 +125,5 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({ newNotification, closeScreen}, dispatch )
-}//end mapDispatchToProps
-    
+}//end mapDispatchToPropsgu
 export default connect(mapStateToProps, mapDispatchToProps) (MainScreen)
