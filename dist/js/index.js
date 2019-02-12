@@ -36707,17 +36707,21 @@ function mapDispatchToProps(dispatch) {
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(MainScreen);
 
 },{"../actions/index":136,"../containers/GenericClass":139,"react":94,"react-redux":76,"redux":100}],139:[function(require,module,exports){
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _react = require('react');
+var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function endCall() {
+    console.log("End Call");
+}
 
 function selectAlert(e) {
     //event.preventDefault();
@@ -36732,7 +36736,7 @@ function rowWrapper(row) {
     return row.map(function (x) {
         i++;
         return _react2.default.createElement(
-            'span',
+            "span",
             { key: i },
             x.name
         );
@@ -36748,9 +36752,15 @@ function GenericClass(props) {
     return alert.notifications.map(function (top_level) {
         k++;
         return _react2.default.createElement(
-            'p',
-            { key: k, className: 'alert', onClick: selectAlert },
-            rowWrapper(top_level)
+            "p",
+            { key: k, className: "alert", onClick: selectAlert },
+            rowWrapper(top_level),
+            _react2.default.createElement(
+                "button",
+                { className: "closeBtn", onClick: endCall },
+                "Close Call"
+            ),
+            " "
         );
     });
 } //end GenericClass

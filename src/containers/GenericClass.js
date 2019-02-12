@@ -1,5 +1,9 @@
 import React from 'react';
 
+function endCall() {
+    console.log("End Call");
+}
+
 function selectAlert(e) {
     //event.preventDefault();
     console.log("Selected: ", e.target );
@@ -24,7 +28,7 @@ function GenericClass(props) {
     let k=0
     return alert.notifications.map( top_level => {
         k++
-        return <p key={k} className="alert" onClick={selectAlert}>{rowWrapper(top_level)}</p>  
+        return <p key={k} className="alert" onClick={selectAlert}>{rowWrapper(top_level)}<button className='closeBtn' onClick={endCall}>Close Call</button> </p> 
     })
 
   }//end GenericClass
