@@ -36250,7 +36250,7 @@ var App = function (_Component) {
         _react2.default.createElement(
           'div',
           null,
-          'Master View Controller (MVC) v.0.0.2c'
+          'Master View Controller (MVC) v.0.0.2f'
         ),
         _react2.default.createElement(
           'div',
@@ -36275,7 +36275,7 @@ var App = function (_Component) {
 
 exports.default = App;
 
-},{"./components/login.js":137,"./components/mainscreen.js":138,"./utils/getBuildingData.js":144,"./utils/getLogData.js":145,"./utils/getOpsData.js":146,"react":94}],136:[function(require,module,exports){
+},{"./components/login.js":138,"./components/mainscreen.js":139,"./utils/getBuildingData.js":145,"./utils/getLogData.js":146,"./utils/getOpsData.js":147,"react":94}],136:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -36375,6 +36375,125 @@ function closeScreen(data) {
 } //end closeScreen
 
 },{}],137:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+function endCall(e) {
+    event.preventDefault();
+    console.log("End Call: ", e);
+    var number = document.getElementById("kaboodle").value;
+    alert("endCall: " + number);
+}
+
+function storeTime() {}
+function selectAlert(e) {
+    //event.preventDefault();
+    console.log("Selected: ", e.target);
+    e.target.classList.remove('alert');
+    e.target.classList.add('selected');
+    console.log("current notification timestamp: ", alert.notification[0].name);
+    console.log("current notification timestamp state: ", state.timeStamp);
+    var timestamp = alert.notification[0].name;
+    var currentTime = Data().toString;
+    var attendedTime = currentTime = timestamp;
+} //end selectAlert
+
+function rowWrapper(row) {
+    var i = 0;
+
+    return row.map(function (x) {
+        i++;
+        return _react2.default.createElement(
+            "span",
+            { key: i, className: "alertItem" },
+            x.name
+        );
+    });
+} //end rowWrapper
+
+var Alerts = function (_React$Component) {
+    _inherits(Alerts, _React$Component);
+
+    function Alerts(props) {
+        _classCallCheck(this, Alerts);
+
+        var _this = _possibleConstructorReturn(this, (Alerts.__proto__ || Object.getPrototypeOf(Alerts)).call(this, props));
+
+        _this.state = {
+            timeStamp: "00",
+            attended: "00",
+            duration: "00" //end state
+        };return _this;
+    } //end constructor
+
+    _createClass(Alerts, [{
+        key: "render",
+        value: function render() {
+            var alert = this.props.alert.alert;
+
+            console.log(" Alerts alert: ", this.props.alert.notification[0].name);
+            console.log("Alerts notifications: ", this.props.alert.notifications[0]);
+            var k = 0;
+            var alertNo = 0;
+
+            return alert.notifications[0].map(function (top_level) {
+                k++;
+                alertNo++;
+                return _react2.default.createElement(
+                    "div",
+                    { key: k, id: "kaboodle" },
+                    _react2.default.createElement(
+                        "p",
+                        { key: k, className: "alert", onClick: selectAlert },
+                        rowWrapper(top_level),
+                        " "
+                    ),
+                    _react2.default.createElement(
+                        "span",
+                        null,
+                        _react2.default.createElement(
+                            "button",
+                            { className: "closeBtn", onClick: endCall },
+                            "Close Call"
+                        ),
+                        " "
+                    ),
+                    _react2.default.createElement(
+                        "button",
+                        { onClick: function onClick() {
+                                return endCall("test");
+                            } },
+                        "X"
+                    )
+                );
+            });
+        } //end render
+
+    }]);
+
+    return Alerts;
+}(_react2.default.Component); //end Alerts
+
+exports.default = Alerts;
+
+},{"react":94}],138:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -36444,23 +36563,20 @@ var LoginComponent = function (_Component) {
         prop: "timestamp",
         name: data.timeStamp
       }, {
-        prop: "firstname",
-        name: data.firstName
-      }, {
-        prop: "lastname",
-        name: data.lastName
-      }, {
-        prop: timeStamp + 60,
-        name: data.duration
+        prop: "building",
+        name: data.building
       }, {
         prop: "doorstation",
         name: data.doorstation
       }, {
-        prop: "building",
-        name: data.building
+        prop: "operator",
+        name: data.operator
       }, {
         prop: "attended",
         name: data.attended
+      }, {
+        prop: "duration",
+        name: data.duration
       }, {
         prop: "alarmtype",
         name: data.alarmType
@@ -36543,7 +36659,7 @@ function mapDispatchToProps(dispatch) {
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(LoginComponent);
 
-},{"../actions/index":136,"react":94,"react-redux":76,"redux":100,"socket.io-client":118}],138:[function(require,module,exports){
+},{"../actions/index":136,"react":94,"react-redux":76,"redux":100,"socket.io-client":118}],139:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -36565,6 +36681,10 @@ var _redux = require('redux');
 var _GenericClass = require('../containers/GenericClass');
 
 var _GenericClass2 = _interopRequireDefault(_GenericClass);
+
+var _Alerts = require('../components/Alerts');
+
+var _Alerts2 = _interopRequireDefault(_Alerts);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -36588,23 +36708,20 @@ var MainScreen = function (_React$Component) {
         prop: "timestamp",
         name: "timeStamp"
       }, {
-        prop: "firstname",
-        name: "firstName"
-      }, {
-        prop: "lastname",
-        name: "lastName"
-      }, {
-        prop: "duration",
-        name: "duration"
+        prop: "building",
+        name: "building"
       }, {
         prop: "doorstation",
         name: "doorStation"
       }, {
-        prop: "building",
-        name: "building"
+        prop: "operator",
+        name: "operator"
       }, {
         prop: "attended",
         name: "attended"
+      }, {
+        prop: "duration",
+        name: "duration"
       }, {
         prop: "alarmtype",
         name: "alarmType"
@@ -36637,48 +36754,35 @@ var MainScreen = function (_React$Component) {
         prop: "timestamp",
         name: timeStamp
       }, {
-        prop: "firstname",
-        name: "Harry"
-      }, {
-        prop: "lastname",
-        name: "Truman"
-      }, {
-        prop: timeStamp + 60,
-        name: "duration"
+        prop: "building",
+        name: "135 5th Street"
       }, {
         prop: "doorstation",
         name: "Front Door"
       }, {
-        prop: "building",
-        name: "135 5th Street"
+        prop: "operator",
+        name: "tbrooks"
+      }, {
+        prop: "duration",
+        name: timeStamp
       }, {
         prop: "attended",
-        name: "jbronowski"
+        name: timeStamp
       }, {
         prop: "alarmtype",
-        name: "1-A"
+        name: "VDM CALL"
       }];
 
       return _react2.default.createElement(
         'div',
         { className: 'center option animated fadeIn mainScrn' },
-        _react2.default.createElement('br', null),
-        _react2.default.createElement('br', null),
+        'VDM oMVC  0.0.1d',
         _react2.default.createElement(
           'button',
-          { className: 'closeBtn', onClick: function onClick() {
+          { className: 'btn', onClick: function onClick() {
               return _this2.props.closeScreen("Close Screen");
             } },
           'Logout'
-        ),
-        _react2.default.createElement('br', null),
-        _react2.default.createElement('br', null),
-        _react2.default.createElement(
-          'button',
-          { className: 'alertBtn', onClick: function onClick() {
-              return _this2.props.store.dispatch({ type: "NEW_NOTIFY", payload: testData });
-            } },
-          'Update'
         ),
         _react2.default.createElement('br', null),
         _react2.default.createElement('br', null),
@@ -36706,7 +36810,7 @@ function mapDispatchToProps(dispatch) {
 } //end mapDispatchToPropsgu
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(MainScreen);
 
-},{"../actions/index":136,"../containers/GenericClass":139,"react":94,"react-redux":76,"redux":100}],139:[function(require,module,exports){
+},{"../actions/index":136,"../components/Alerts":137,"../containers/GenericClass":140,"react":94,"react-redux":76,"redux":100}],140:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -36719,15 +36823,24 @@ var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function endCall() {
-    console.log("End Call");
+function endCall(e) {
+    event.preventDefault();
+    console.log("End Call: ", e);
+    var number = document.getElementById("kaboodle").value;
+    alert("endCall: " + number);
 }
 
+function storeTime() {}
 function selectAlert(e) {
     //event.preventDefault();
     console.log("Selected: ", e.target);
     e.target.classList.remove('alert');
     e.target.classList.add('selected');
+    console.log("current notification timestamp: ", alert.notification[0].name);
+    console.log("current notification timestamp state: ", state.timeStamp);
+    var timestamp = alert.notification[0].name;
+    var currentTime = Data().toString;
+    var attendedTime = currentTime = timestamp;
 } //end selectAlert
 
 function rowWrapper(row) {
@@ -36737,7 +36850,7 @@ function rowWrapper(row) {
         i++;
         return _react2.default.createElement(
             "span",
-            { key: i },
+            { key: i, className: "alertItem" },
             x.name
         );
     });
@@ -36749,18 +36862,29 @@ function GenericClass(props) {
     console.log("Generic Class alert: ", alert.notification[0].name);
     console.log("Generic Class notifications: ", alert.notifications);
     var k = 0;
+    var alertNo = 0;
+
     return alert.notifications.map(function (top_level) {
         k++;
+        alertNo++;
         return _react2.default.createElement(
-            "p",
-            { key: k, className: "alert", onClick: selectAlert },
-            rowWrapper(top_level),
+            "div",
+            { key: k, id: "kaboodle" },
             _react2.default.createElement(
-                "button",
-                { className: "closeBtn", onClick: endCall },
-                "Close Call"
-            ),
-            " "
+                "p",
+                { key: k, className: "alert", onClick: selectAlert },
+                rowWrapper(top_level),
+                _react2.default.createElement(
+                    "span",
+                    null,
+                    _react2.default.createElement(
+                        "button",
+                        { className: "closeBtn", onClick: endCall },
+                        "Close Call"
+                    ),
+                    " "
+                )
+            )
         );
     });
 } //end GenericClass
@@ -36768,7 +36892,7 @@ function GenericClass(props) {
 GenericClass.propTypes = {};
 exports.default = GenericClass;
 
-},{"react":94}],140:[function(require,module,exports){
+},{"react":94}],141:[function(require,module,exports){
 'use strict';
 
 var _react = require('react');
@@ -36803,7 +36927,7 @@ _reactDom2.default.render(_react2.default.createElement(
     _react2.default.createElement(_App2.default, { store: store, state: store.getState() })
 ), document.getElementById('app'));
 
-},{"./App":135,"./reducers":142,"react":94,"react-dom":73,"react-redux":76,"redux":100}],141:[function(require,module,exports){
+},{"./App":135,"./reducers":143,"react":94,"react-dom":73,"react-redux":76,"redux":100}],142:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -36845,7 +36969,7 @@ var dataReducer = function dataReducer() {
 
 exports.default = dataReducer;
 
-},{}],142:[function(require,module,exports){
+},{}],143:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -36872,7 +36996,7 @@ var rootReducer = (0, _redux.combineReducers)({
 
 exports.default = rootReducer;
 
-},{"./dataReducer":141,"./screenReducer":143,"redux":100}],143:[function(require,module,exports){
+},{"./dataReducer":142,"./screenReducer":144,"redux":100}],144:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -36921,7 +37045,7 @@ var screenReducer = function screenReducer() {
 
 exports.default = screenReducer;
 
-},{}],144:[function(require,module,exports){
+},{}],145:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -36951,7 +37075,7 @@ function getBuildingData() {
   });
 }
 
-},{"axios":3}],145:[function(require,module,exports){
+},{"axios":3}],146:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -36981,7 +37105,7 @@ function getLogData() {
   });
 }
 
-},{"axios":3}],146:[function(require,module,exports){
+},{"axios":3}],147:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -37011,4 +37135,4 @@ function getOpsData() {
   });
 }
 
-},{"axios":3}]},{},[140]);
+},{"axios":3}]},{},[141]);

@@ -7,7 +7,7 @@ import { bindActionCreators } from 'redux';
 
 import { newNotification } from '../actions/index';
 
-import GenericClass from '../containers/GenericClass'
+import GenericClass from '../containers/GenericClass';
 
 class MainScreen extends React.Component {
     constructor(props){
@@ -19,28 +19,24 @@ class MainScreen extends React.Component {
             name: "timeStamp"
           },
           {
-            prop : "firstname",
-            name: "firstName"
-          },
-          {
-            prop : "lastname",
-            name: "lastName"
-          },
-          {
-            prop : "duration",
-            name: "duration"
+            prop : "building",
+            name: "building"
           },
           {
             prop : "doorstation",
             name: "doorStation"
           },
           {
-            prop : "building",
-            name: "building"
+            prop : "operator",
+            name: "operator"
           },
           {
             prop : "attended",
             name: "attended"
+          },
+          {
+            prop : "duration",
+            name: "duration"
           },
           {
             prop : "alarmtype",
@@ -72,42 +68,37 @@ class MainScreen extends React.Component {
       name: timeStamp
     },
     {
-      prop : "firstname",
-      name: "Harry"
-    },
-    {
-      prop : "lastname",
-      name: "Truman"
-    },
-    {
-      prop : timeStamp + 60,
-      name: "duration"
+      prop : "building",
+      name: "135 5th Street"
     },
     {
       prop : "doorstation",
       name: "Front Door"
     },
     {
-      prop : "building",
-      name: "135 5th Street"
+      prop : "operator",
+      name: "tbrooks"
+    },
+    {
+      prop : "duration",
+      name: timeStamp
     },
     {
       prop : "attended",
-      name: "jbronowski"
+      name: timeStamp
     },
     {
       prop : "alarmtype",
-      name: "1-A"
+      name: "VDM CALL"
     },
   ];
 
       return (
-        <div className='center option animated fadeIn mainScrn'><br/><br/>      
-          <button className="closeBtn" onClick={()=> this.props.closeScreen("Close Screen")}>Logout</button>
+        <div className='center option animated fadeIn mainScrn'>
+        VDM oMVC  0.0.1d  
+          <button className="btn" onClick={()=> this.props.closeScreen("Close Screen")}>Logout</button>
           <br/><br/>
-          <button className="alertBtn" onClick={()=> this.props.store.dispatch( { type: "NEW_NOTIFY", payload: testData })}>Update</button>
-          <br/><br />
-          <GenericClass alert={this.props.reducerdata }  notifications={this.props.notification} />
+          <GenericClass alert={this.props.reducerdata }  notifications={this.props.notification} /> 
         </div>
       )
    }//end render

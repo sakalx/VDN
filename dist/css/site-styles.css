@@ -26,14 +26,19 @@ body {
 /* line 16, ../../sass/partials/_main.sass */
 p {
   color: #333;
+  margin-botom: 0.2em;
+  width: 100%;
+  float: left;
+  margin-right: 1.69492%;
+  display: inline;
 }
 
-/* line 19, ../../sass/partials/_main.sass */
+/* line 21, ../../sass/partials/_main.sass */
 h3 {
   color: #ccc;
 }
 
-/* line 22, ../../sass/partials/_main.sass */
+/* line 24, ../../sass/partials/_main.sass */
 .mainScrn {
   width: 100%;
   float: left;
@@ -52,7 +57,7 @@ h3 {
   overflow-y: scroll;
 }
 @media (max-width: 651px) {
-  /* line 22, ../../sass/partials/_main.sass */
+  /* line 24, ../../sass/partials/_main.sass */
   .mainScrn {
     width: 100%;
     float: left;
@@ -60,7 +65,7 @@ h3 {
   }
 }
 
-/* line 35, ../../sass/partials/_main.sass */
+/* line 37, ../../sass/partials/_main.sass */
 .pane {
   background: #f5f5f5;
   width: 32.20339%;
@@ -72,12 +77,12 @@ h3 {
   padding: 1em;
   border: 1px solid #333;
 }
-/* line 42, ../../sass/partials/_main.sass */
+/* line 44, ../../sass/partials/_main.sass */
 .pane img {
   margin-left: 2em;
 }
 
-/* line 45, ../../sass/partials/_main.sass */
+/* line 47, ../../sass/partials/_main.sass */
 .pane2 {
   background: aqua;
   width: 100%;
@@ -89,7 +94,7 @@ h3 {
   padding: 1em;
 }
 
-/* line 52, ../../sass/partials/_main.sass */
+/* line 54, ../../sass/partials/_main.sass */
 .leftpane {
   background: #f5f5f5;
   height: 30em;
@@ -103,7 +108,7 @@ h3 {
   margin: 0;
 }
 
-/* line 61, ../../sass/partials/_main.sass */
+/* line 63, ../../sass/partials/_main.sass */
 .navbar {
   background: #fff;
   width: 100%;
@@ -115,7 +120,7 @@ h3 {
   padding: 0.5em;
 }
 
-/* line 68, ../../sass/partials/_main.sass */
+/* line 70, ../../sass/partials/_main.sass */
 .navBtn {
   background: #f5f5f5;
   padding: 0.2em;
@@ -130,7 +135,7 @@ h3 {
   float: left;
 }
 
-/* line 78, ../../sass/partials/_main.sass */
+/* line 80, ../../sass/partials/_main.sass */
 .longBtn {
   width: 15.25424%;
   float: left;
@@ -138,21 +143,22 @@ h3 {
   display: inline;
 }
 
-/* line 81, ../../sass/partials/_main.sass */
+/* line 83, ../../sass/partials/_main.sass */
 .btn {
   background: #f5f5f5;
   padding: 0.5em;
   font-size: 1em;
   color: #333;
   cursor: pointer;
-  width: 100%;
+  width: 15.25424%;
   float: left;
   margin-right: 1.69492%;
   display: inline;
   margin-bottom: 0.5em;
+  float: right;
 }
 
-/* line 90, ../../sass/partials/_main.sass */
+/* line 94, ../../sass/partials/_main.sass */
 .closeBtn {
   cursor: pointer;
   width: 15.25424%;
@@ -162,9 +168,10 @@ h3 {
   background: #f5f5f5;
   font-size: 1em;
   float: right;
+  position: relative;
 }
 
-/* line 97, ../../sass/partials/_main.sass */
+/* line 103, ../../sass/partials/_main.sass */
 .homeBtn {
   float: right;
   cursor: pointer;
@@ -176,26 +183,33 @@ h3 {
   font-size: 1em;
 }
 
-/* line 104, ../../sass/partials/_main.sass */
+/* line 110, ../../sass/partials/_main.sass */
 .right {
   float: right;
 }
 
-/* line 107, ../../sass/partials/_main.sass */
+/* line 113, ../../sass/partials/_main.sass */
 .alert {
   background: red;
   padding: 0.5em;
   cursor: pointer;
+  margin: 0.2em;
 }
 
-/* line 112, ../../sass/partials/_main.sass */
+/* line 120, ../../sass/partials/_main.sass */
 .selected {
   background: green;
   padding: 0.5em;
   cursor: pointer;
 }
 
-/* line 117, ../../sass/partials/_main.sass */
+/* line 125, ../../sass/partials/_main.sass */
+.closed {
+  background: #ccc;
+  cursor: none;
+}
+
+/* line 129, ../../sass/partials/_main.sass */
 .dropdown {
   background: #ccc;
   margin: 0.5em;
@@ -205,7 +219,7 @@ h3 {
   float: left;
 }
 
-/* line 125, ../../sass/partials/_main.sass */
+/* line 137, ../../sass/partials/_main.sass */
 .alerts {
   background: #f5f5f5;
   width: 73%;
@@ -216,7 +230,7 @@ h3 {
   border: 1px solid #333;
 }
 
-/* line 135, ../../sass/partials/_main.sass */
+/* line 147, ../../sass/partials/_main.sass */
 .doorStation {
   background: #333;
   width: 100%;
@@ -230,44 +244,49 @@ h3 {
   color: #ccc;
 }
 
-/* line 144, ../../sass/partials/_main.sass */
+/* line 156, ../../sass/partials/_main.sass */
 .nolist {
   list-style: none;
   background: aqua;
 }
 
-/* line 149, ../../sass/partials/_main.sass */
+/* line 161, ../../sass/partials/_main.sass */
 ul li {
   list-style: none;
 }
 
-/* line 152, ../../sass/partials/_main.sass */
+/* line 164, ../../sass/partials/_main.sass */
 .noPadding {
   padding: 0;
 }
 
-/* line 155, ../../sass/partials/_main.sass */
+/* line 167, ../../sass/partials/_main.sass */
 .right {
   float: right;
 }
 
-/* line 158, ../../sass/partials/_main.sass */
+/* line 170, ../../sass/partials/_main.sass */
 .noBorder {
   border: none;
 }
 
-/* line 162, ../../sass/partials/_main.sass */
+/* line 174, ../../sass/partials/_main.sass */
 p .fontStyle {
   color: red;
 }
 
-/* line 166, ../../sass/partials/_main.sass */
+/* line 177, ../../sass/partials/_main.sass */
+.alertItem {
+  margin-right: 1em;
+}
+
+/* line 181, ../../sass/partials/_main.sass */
 .tab-list {
   border-bottom: 1px solid #ccc;
   padding-left: 0;
 }
 
-/* line 170, ../../sass/partials/_main.sass */
+/* line 185, ../../sass/partials/_main.sass */
 .tab-list-item {
   display: inline-block;
   list-style: none;
@@ -275,7 +294,7 @@ p .fontStyle {
   padding: 0.5rem 0.75rem;
 }
 
-/* line 176, ../../sass/partials/_main.sass */
+/* line 191, ../../sass/partials/_main.sass */
 .tab-list-active {
   background-color: white;
   border: solid #ccc;

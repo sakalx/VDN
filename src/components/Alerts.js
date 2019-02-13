@@ -19,8 +19,7 @@ function selectAlert(e) {
     console.log("current notification timestamp state: ", state.timeStamp );
     let timestamp = alert.notification[0].name;
     let currentTime = Data().toString;
-    let attendedTime = currentTime = timestamp; 
-
+    let attendedTime = currentTime = timestamp;
 
 }//end selectAlert
 
@@ -33,30 +32,36 @@ function rowWrapper(row){
     })
 }//end rowWrapper
 
-function GenericClass(props) {
+class Alerts extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            timeStamp: "00",
+            attended: "00",
+            duration: "00"
+        }//end state
+      }//end constructor
 
-    const { alert } =  props;
-    console.log("Generic Class alert: ", alert.notification[0].name)
-    console.log("Generic Class notifications: ", alert.notifications)
+    render() {
+    const { alert } = this.props.alert ;
+    console.log(" Alerts alert: ", this.props.alert.notification[0].name)
+    console.log("Alerts notifications: ", this.props.alert.notifications[0])
     let k=0
     let alertNo = 0;
 
-    return alert.notifications.map( top_level => {
+    return alert.notifications[0].map( top_level => {
         k++
         alertNo++
         return ( 
             <div  key={k} id="kaboodle">
-                <p key={k} className="alert" onClick={selectAlert}>{rowWrapper(top_level)}  
-                    <span><button className='closeBtn' onClick={endCall}>Close Call</button> </span> 
-                </p> 
-               
+                <p key={k} className="alert" onClick={selectAlert}>{rowWrapper(top_level)} </p> 
+                <span><button className='closeBtn' onClick={endCall}>Close Call</button> </span>
+                <button onClick={() => endCall("test")}>X</button>
 
             </div>
         )
     })
+  }//end render
+}//end Alerts
 
-  }//end GenericClass
-
-GenericClass.propTypes = {
-};
-export default GenericClass;
+export default Alerts;

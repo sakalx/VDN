@@ -41,28 +41,24 @@ class LoginComponent extends Component {
         name: data.timeStamp
       },
       {
-        prop : "firstname",
-        name: data.firstName
-      },
-      {
-        prop : "lastname",
-        name: data.lastName
-      },
-      {
-        prop : timeStamp + 60,
-        name: data.duration
+        prop : "building",
+        name: data.building
       },
       {
         prop : "doorstation",
         name: data.doorstation
       },
       {
-        prop : "building",
-        name: data.building
+        prop : "operator",
+        name: data.operator
       },
       {
         prop : "attended",
         name: data.attended
+      },
+      {
+        prop :"duration",
+        name: data.duration
       },
       {
         prop : "alarmtype",
