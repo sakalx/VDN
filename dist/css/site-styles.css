@@ -190,17 +190,17 @@ h3 {
 
 /* line 113, ../../sass/partials/_main.sass */
 .alert {
-  background: red;
   padding: 0.5em;
   cursor: pointer;
   margin: 0.2em;
 }
 
 /* line 120, ../../sass/partials/_main.sass */
-.selected {
+.alert-selected {
   background: green;
-  padding: 0.5em;
-  cursor: pointer;
+}
+.alert-active {
+  background: red;
 }
 
 /* line 125, ../../sass/partials/_main.sass */

@@ -21,19 +21,32 @@ class GenericClass extends React.Component {
     notifications: this.props.alert.notifications,
   };
 
-  selectAlert = () => {
+  selectAlert = event => {
+    if (this.state.acceptedCallTime) return;
+
+    const notificationSection = getNotificationNode(event.target);
+    removeClassAlertActive(notificationSection);
+    addClassAlertSelected(notificationSection);
+
     this.setState({
       acceptedCallTime: +new Date(),
     })
   };
 
-  endCall = selected => () => {
+  endCall = selected => event => {
     const {acceptedCallTime, notifications} = this.state;
     const selectedCall = notifications[selected];
-    const endCallTime = +new Date();
-    const durationCall = endCallTime - acceptedCallTime;
+    const endCallTime = new Date();
+    const durationCall = +endCallTime - acceptedCallTime;
 
-    notifications[selected] = makeUpdateDuration(selectedCall, durationCall);
+    const notificationSection = getNotificationNode(event.target);
+    removeClassAlertActive(notificationSection);
+    removeClassAlertSelected(notificationSection);
+
+    //[FIXME] can be better
+    const updatedDuration = makeUpdateCallInfo(selectedCall, 'duration', durationCall);
+    const updatedAttendedAndDuration = makeUpdateCallInfo(updatedDuration, 'attended', String(endCallTime));
+    notifications[selected] = updatedAttendedAndDuration;
 
     // [TODO] replace native alert on custom alert
     alert(`Duration Call: ${millisToMinutesAndSeconds(durationCall)}min.`);
@@ -47,16 +60,17 @@ class GenericClass extends React.Component {
       notifications.map((top_level, index) => (
           <div
             key={String(index)}
-            onClick={this.selectAlert}
+            className='alert alert-active'
           >
-            <div className="alert">
+            <div onClick={this.selectAlert}>
               {rowWrapper(top_level)}
-              <button className='closeBtn'
-                      onClick={this.endCall(index)}
-              >
-                Close Call
-              </button>
             </div>
+            <button
+              className='closeBtn'
+              onClick={this.endCall(index)}
+            >
+              Close Call
+            </button>
           </div>
         )
       )
@@ -64,7 +78,7 @@ class GenericClass extends React.Component {
   }
 }
 
-// Helpers:
+// Helpers / Utility:
 function millisToMinutesAndSeconds(millisec) {
   if (typeof millisec !== 'number') return 0;
 
@@ -74,12 +88,28 @@ function millisToMinutesAndSeconds(millisec) {
   return convertedTime
 }
 
-function makeUpdateDuration(infoArr, duration) {
+function makeUpdateCallInfo(infoArr, prop, name) {
   return infoArr.map(info =>
-    (info.prop === 'duration')
-      ? ({...info, name: duration})
+    (info.prop === prop)
+      ? ({...info, name,})
       : info
   );
+}
+
+function getNotificationNode(target) {
+  return target.closest('.alert');
+}
+
+function removeClassAlertSelected(element) {
+  element.classList.remove('alert-selected');
+}
+
+function addClassAlertSelected(element) {
+  element.classList.add('alert-selected');
+}
+
+function removeClassAlertActive(element) {
+  element.classList.remove('alert-active');
 }
 
 GenericClass.propTypes = {};
