@@ -5,7 +5,6 @@ function rowWrapper(row) {
       <section
         key={String(index)}
         className='alertItem'>
-        <h5>{prop} :</h5>
         <span>
           {(prop === 'duration') ? millisToMinutesAndSeconds(name) : name}
         </span>
