@@ -2,13 +2,12 @@ import React from 'react';
 
 function rowWrapper(row) {
   return row.map(({prop, name}, index) => (
-      <section
+      <span
         key={String(index)}
-        className='alertItem'>
-        <span>
+        className='alertItem'
+      >
           {(prop === 'duration') ? millisToMinutesAndSeconds(name) : name}
         </span>
-      </section>
     )
   )
 }
@@ -70,7 +69,6 @@ class GenericClass extends React.Component {
             <div onClick={this.selectAlert}>
               {rowWrapper(top_level)}
             </div>
-            // [TODO] make button disabled, until call not selected
             <button
               className='closeBtn'
               onClick={this.endCall(index)}
