@@ -22,12 +22,8 @@ class GenericClass extends React.Component {
   };
 
   selectAlert = event => {
-    if (this.state.acceptedCallTime) return;
-
-    const notificationSection = getNotificationNode(event.target);
-    removeClassAlertActive(notificationSection);
-    addClassAlertSelected(notificationSection);
-
+    // [TODO] make section disabled, don't allow select second times
+    this._handlerSelectAlertUI(event.target);
     this.setState({
       acceptedCallTime: +new Date(),
     })
@@ -39,9 +35,7 @@ class GenericClass extends React.Component {
     const endCallTime = new Date();
     const durationCall = +endCallTime - acceptedCallTime;
 
-    const notificationSection = getNotificationNode(event.target);
-    removeClassAlertActive(notificationSection);
-    removeClassAlertSelected(notificationSection);
+    this._handlerEndCallUI(event.target);
 
     //[FIXME] can be better
     const updatedDuration = makeUpdateCallInfo(selectedCall, 'duration', durationCall);
@@ -51,6 +45,18 @@ class GenericClass extends React.Component {
     // [TODO] replace native alert on custom alert
     alert(`Duration Call: ${millisToMinutesAndSeconds(durationCall)}min.`);
     this.setState({notifications});
+  };
+
+  _handlerSelectAlertUI = target => {
+    const notificationSection = getNotificationNode(target);
+    removeClassAlertActive(notificationSection);
+    addClassAlertSelected(notificationSection);
+  };
+
+  _handlerEndCallUI = target => {
+    const notificationSection = getNotificationNode(target);
+    removeClassAlertActive(notificationSection);
+    removeClassAlertSelected(notificationSection);
   };
 
   render() {
@@ -65,6 +71,7 @@ class GenericClass extends React.Component {
             <div onClick={this.selectAlert}>
               {rowWrapper(top_level)}
             </div>
+            // [TODO] make button disabled, until call not selected
             <button
               className='closeBtn'
               onClick={this.endCall(index)}
