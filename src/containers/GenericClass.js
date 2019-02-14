@@ -1,62 +1,86 @@
 import React from 'react';
 
-function endCall(e) {
-    event.preventDefault();
-    console.log("End Call: ", e );
-    var number=document.getElementById("kaboodle").value;  
-    alert("endCall: "+ number );
-} 
- 
-function storeTime () {
-
+function rowWrapper(row) {
+  return row.map(({prop, name}, index) => (
+      <section
+        key={String(index)}
+        className='alertItem'>
+        <h5>{prop} :</h5>
+        <span>
+          {(prop === 'duration') ? millisToMinutesAndSeconds(name) : name}
+        </span>
+      </section>
+    )
+  )
 }
-function selectAlert(e) {
-    //event.preventDefault();
-    console.log("Selected: ", e.target );
-    e.target.classList.remove('alert');
-    e.target.classList.add('selected');
-    console.log("current notification timestamp: ", alert.notification[0].name);
-    console.log("current notification timestamp state: ", state.timeStamp );
-    let timestamp = alert.notification[0].name;
-    let currentTime = Data().toString;
-    let attendedTime = currentTime = timestamp; 
 
+class GenericClass extends React.Component {
 
-}//end selectAlert
+  state = {
+    acceptedCallTime: null,
+    notifications: this.props.alert.notifications,
+  };
 
-function rowWrapper(row){
-    let i = 0;
-
-    return row.map(x=>{
-        i++
-        return <span key={i} className='alertItem'>{x.name}</span>
+  selectAlert = () => {
+    this.setState({
+      acceptedCallTime: +new Date(),
     })
-}//end rowWrapper
+  };
 
-function GenericClass(props) {
+  endCall = selected => () => {
+    const {acceptedCallTime, notifications} = this.state;
+    const selectedCall = notifications[selected];
+    const endCallTime = +new Date();
+    const durationCall = endCallTime - acceptedCallTime;
 
-    const { alert } =  props;
-    console.log("Generic Class alert: ", alert.notification[0].name)
-    console.log("Generic Class notifications: ", alert.notifications)
-    let k=0
-    let alertNo = 0;
+    notifications[selected] = makeUpdateDuration(selectedCall, durationCall);
 
-    return alert.notifications.map( top_level => {
-        k++
-        alertNo++
-        return ( 
-            <div  key={k} id="kaboodle">
-                <p key={k} className="alert" onClick={selectAlert}>{rowWrapper(top_level)}  
-                    <span><button className='closeBtn' onClick={endCall}>Close Call</button> </span> 
-                </p> 
-               
+    // [TODO] replace native alert on custom alert
+    alert(`Duration Call: ${millisToMinutesAndSeconds(durationCall)}min.`);
+    this.setState({notifications});
+  };
 
+  render() {
+    const {notifications} = this.state;
+
+    return (
+      notifications.map((top_level, index) => (
+          <div
+            key={String(index)}
+            onClick={this.selectAlert}
+          >
+            <div className="alert">
+              {rowWrapper(top_level)}
+              <button className='closeBtn'
+                      onClick={this.endCall(index)}
+              >
+                Close Call
+              </button>
             </div>
+          </div>
         )
-    })
+      )
+    );
+  }
+}
 
-  }//end GenericClass
+// Helpers:
+function millisToMinutesAndSeconds(millisec) {
+  if (typeof millisec !== 'number') return 0;
 
-GenericClass.propTypes = {
-};
+  const minutes = Math.floor(millisec / 60000);
+  const seconds = ((millisec % 60000) / 1000).toFixed(0);
+  const convertedTime = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+  return convertedTime
+}
+
+function makeUpdateDuration(infoArr, duration) {
+  return infoArr.map(info =>
+    (info.prop === 'duration')
+      ? ({...info, name: duration})
+      : info
+  );
+}
+
+GenericClass.propTypes = {};
 export default GenericClass;

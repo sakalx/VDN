@@ -98,6 +98,12 @@ class MainScreen extends React.Component {
         VDM oMVC  0.0.1d  
           <button className="btn" onClick={()=> this.props.closeScreen("Close Screen")}>Logout</button>
           <br/><br/>
+          <button
+            className="alertBtn"
+            onClick={()=> this.props.store.dispatch( { type: "NEW_NOTIFY", payload: testData })}
+          >
+            Update
+          </button>
           <GenericClass alert={this.props.reducerdata }  notifications={this.props.notification} /> 
         </div>
       )
