@@ -7,7 +7,7 @@ import { bindActionCreators } from 'redux';
 
 import { newNotification } from '../actions/index';
 
-import GenericClass from '../containers/GenericClass';
+import GenericClass from '../containers/Generic-Class';
 
 class MainScreen extends React.Component {
     constructor(props){
@@ -32,11 +32,11 @@ class MainScreen extends React.Component {
           },
           {
             prop : "attended",
-            name: "attended"
+            name: null,
           },
           {
             prop : "duration",
-            name: "duration"
+            name: null,
           },
           {
             prop : "alarmtype",
@@ -81,11 +81,11 @@ class MainScreen extends React.Component {
     },
     {
       prop : "duration",
-      name: timeStamp
+      name: null
     },
     {
       prop : "attended",
-      name: timeStamp
+      name: null,
     },
     {
       prop : "alarmtype",
