@@ -1,6 +1,16 @@
 import React from 'react';
 
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
+import {newNotification} from '../../actions';
+
 import millisToMinutesAndSeconds from '../../utils/millisToMinutesAndSeconds';
+import {
+  getNotificationNode,
+  removeClassAlertSelected,
+  removeClassAlertActive,
+  addClassAlertSelected,
+} from '../../ui-utility/alert-element';
 
 import InfoSection from './InfoSection';
 
@@ -28,8 +38,8 @@ class GenericClass extends React.Component {
   endCall = selected => event => {
     const {acceptedCallTime, notifications} = this.state;
     const selectedCall = notifications[selected];
-    const endCallTime = new Date();
-    const durationCall = +endCallTime - acceptedCallTime;
+    const endCallTime = +new Date();
+    const durationCall = endCallTime - acceptedCallTime;
 
     this._handlerEndCallUI(event.target);
 
@@ -70,6 +80,9 @@ class GenericClass extends React.Component {
 
   render() {
     const {notifications} = this.state;
+    //const {alert: {notifications}} = this.props;
+
+    if (!notifications) return null;
 
     return (
       notifications.map((top_level, index) => (
@@ -95,21 +108,12 @@ class GenericClass extends React.Component {
   }
 }
 
+const mapStateToProps = ({mydata}) => ({
+  mydata,
+});
 
-function getNotificationNode(target) {
-  return target.closest('.alert');
-}
+const mapDispatchToProps = dispatch => bindActionCreators({
+  newNotification,
+}, dispatch);
 
-function removeClassAlertSelected(element) {
-  element.classList.remove('alert-selected');
-}
-
-function addClassAlertSelected(element) {
-  element.classList.add('alert-selected');
-}
-
-function removeClassAlertActive(element) {
-  element.classList.remove('alert-active');
-}
-
-export default GenericClass;
+export default connect(mapStateToProps, mapDispatchToProps)(GenericClass);

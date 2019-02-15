@@ -46,9 +46,9 @@ class MainScreen extends React.Component {
         }//end state
       }//end constructor
 
-      componentWillMount() {        
+  /*    componentWillMount() {
         this.props.store.dispatch({type: "NEW_NOTIFY", payload: this.state.notification })
-      }//end componentWillMount
+      }//end componentWillMount*/
 
    render() {
 
@@ -61,7 +61,7 @@ class MainScreen extends React.Component {
    console.log ("Mainscreen - Reducer state: ", this.props.reducerdata );
    console.log("Mainscreen - current local state notification: ", this.state.notification );
 
-   const timeStamp = Date().toString();
+   const timeStamp = new Date();
    const testData = [
     {
       prop: "timestamp",
