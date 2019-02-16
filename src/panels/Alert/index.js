@@ -6,7 +6,7 @@ import Header from './Header';
 import Alert from './Alert';
 import CloseCallBtn from './CloseCallBtn';
 
-function GenericClass({notifications}) {
+function AlertPanel({notifications}) {
   return (
     <section>
       <Header/>
@@ -29,4 +29,4 @@ const mapStateToProps = ({
   notifications,
 });
 
-export default connect(mapStateToProps, null)(GenericClass);
+export default connect(mapStateToProps, null)(AlertPanel);

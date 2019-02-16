@@ -8,7 +8,7 @@ import {
   addClassAlertSelected,
   getNotificationNode,
   removeClassAlertActive,
-} from '../../ui-utility/alert-element';
+} from '../../utils/ui/alert-element';
 
 import {
   normalizeDate,

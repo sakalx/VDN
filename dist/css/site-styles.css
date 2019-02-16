@@ -276,7 +276,7 @@ p .fontStyle {
 }
 
 /* line 177, ../../sass/partials/_main.sass */
-.alertItem span {
+.alertItem {
   margin-right: 1em;
 }
 

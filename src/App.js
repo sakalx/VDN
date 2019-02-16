@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 //import  Login  from './components/login.js';
-import  MainScreen  from './containers/MainScreen';
+import  MainScreen  from './screens/Main';
 
 //Utility functions
 //import { getLogData } from './utils/getLogData.js'

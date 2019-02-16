@@ -4,7 +4,11 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {setNewNotification} from '../../redux-core/actions/notification';
 
-import GenericClass from '../AlertPanel';
+import NavigationPanel from '../../panels/Navigation';
+import LeftPanel from '../../panels/Left';
+import MiddlePanel from '../../panels/Middle';
+import RightPanel from '../../panels/Right';
+import AlertPanel from '../../panels/Alert';
 
 const testData = {
   acceptedCallTime: null, //attended
@@ -26,6 +30,7 @@ function MainScreen({
 
   return (
     <div className='center option animated fadeIn mainScrn'>
+      {/*Dummy view START*/}
       VDM oMVC 0.0.1d
       <button
         className="btn"
@@ -33,13 +38,19 @@ function MainScreen({
       >
         Logout
       </button>
-      <button
-        className="alertBtn"
-        onClick={getNewNotification}
-      >
+      <button className="alertBtn" onClick={getNewNotification}>
         Update
       </button>
-      <GenericClass/>
+      {/*Dummy view END*/}
+
+      {/*Main screen*/}
+      <main>
+        <NavigationPanel/>
+        <LeftPanel/>
+        <MiddlePanel/>
+        <RightPanel/>
+        <AlertPanel/>
+      </main>
     </div>
   )
 }

@@ -8,7 +8,7 @@ import {
   getNotificationNode,
   removeClassAlertActive,
   removeClassAlertSelected,
-} from '../../ui-utility/alert-element';
+} from '../../utils/ui/alert-element';
 
 import {millisToMinutesAndSeconds} from '../../utils/time';
 
