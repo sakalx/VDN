@@ -15,7 +15,7 @@ import {Row} from './style';
 
 class Alert extends React.Component {
   state = {
-    status: 'active',
+    status: 'active', // or selected
   };
 
   getDurationCall = () => {
@@ -56,11 +56,6 @@ class Alert extends React.Component {
     this.setState({status: null});
   };
 
-  _callResolved = () => {
-    const {notification} = this.props;
-    return notification.resolvedCallTime - notification.acceptedCallTime >= 0;
-  };
-
   render() {
     const {notification,} = this.props;
     const {status} = this.state;
@@ -75,7 +70,7 @@ class Alert extends React.Component {
         <TableCell align='right'>{this.getDurationCall()}</TableCell>
         <TableCell align='right'>{notification.alarmType}</TableCell>
         <TableCell align='right'>
-          {!this._callResolved() && (
+          {status === 'selected' && (
             < Button
               variant='outlined'
               color='primary'
