@@ -4,9 +4,7 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {setNewNotification} from '../../redux-core/actions/notification';
 
-//Socket To Em!
 import socketIOClient from 'socket.io-client';
-
 
 class Login extends React.Component {
   state = {
@@ -43,6 +41,7 @@ class Login extends React.Component {
   componentDidMount() {
     const {endpoint} = this.state;
     const socket = socketIOClient(endpoint);
+
     socket.on('message', response => {
       this.setState({
         response,

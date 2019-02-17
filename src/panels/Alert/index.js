@@ -2,25 +2,29 @@ import React from 'react';
 
 import {connect} from 'react-redux';
 
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import Paper from '@material-ui/core/Paper';
+
 import Header from './Header';
 import Alert from './Alert';
-import CloseCallBtn from './CloseCallBtn';
 
-function AlertPanel({notifications}) {
+function MaterialAlert({notifications}) {
   return (
-    <section>
-      <Header/>
-      {notifications.map((notification, index) => (
-        <ul
-          key={String(index)}
-          className='alert alert-active'
-        >
-          <Alert selected={index} notification={notification}/>
-          <CloseCallBtn selected={index} notification={notification}/>
-        </ul>
-      ))}
-    </section>
-  )
+    <Paper>
+      <Table>
+       <Header/>
+        <TableBody>
+          {notifications.map((alert, index) => (
+            <Alert key={String(index)}
+                   selected={index}
+                   notification={alert}
+            />
+          ))}
+        </TableBody>
+      </Table>
+    </Paper>
+  );
 }
 
 const mapStateToProps = ({
@@ -29,4 +33,4 @@ const mapStateToProps = ({
   notifications,
 });
 
-export default connect(mapStateToProps, null)(AlertPanel);
+export default connect(mapStateToProps, null)(MaterialAlert);

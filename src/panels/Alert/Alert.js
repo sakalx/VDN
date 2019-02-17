@@ -5,62 +5,100 @@ import {connect} from 'react-redux';
 import {updateNotification} from '../../redux-core/actions/notification';
 
 import {
-  addClassAlertSelected,
-  getNotificationNode,
-  removeClassAlertActive,
-} from '../../utils/ui/alert-element';
-
-import {
   normalizeDate,
   millisToMinutesAndSeconds,
 } from '../../utils/time';
 
-function Alert({
-                 selected,
-                 notification,
-                 updateNotification,
-               }) {
+import Button from '@material-ui/core/Button';
+import TableCell from '@material-ui/core/TableCell';
+import {Row} from './style';
 
-  const selectAlert = event => {
-    const {acceptedCallTime} = notification;
+class Alert extends React.Component {
+  state = {
+    status: 'active',
+  };
+
+  getDurationCall = () => {
+    const {notification} = this.props;
+    const durationCall = notification.resolvedCallTime - notification.acceptedCallTime;
+    return millisToMinutesAndSeconds(durationCall);
+  };
+
+  selectAlert = () => {
+    const {
+      selected,
+      notification: {acceptedCallTime},
+      updateNotification,
+    } = this.props;
     if (acceptedCallTime > 1) return;
 
     updateNotification(selected, {
       acceptedCallTime: +new Date(),
     });
 
-    _handlerSelectAlertUI(event.target);
+    this.setState({status: 'selected'});
   };
 
-  const getDurationCall = () => {
-    const durationCall = notification.resolvedCallTime - notification.acceptedCallTime;
-    return millisToMinutesAndSeconds(durationCall);
+  endCall = () => {
+    const {
+      selected,
+      notification: {acceptedCallTime},
+      updateNotification,
+    } = this.props;
+    const resolvedCallTime = +new Date();
+    const durationCall = resolvedCallTime - acceptedCallTime;
+
+    updateNotification(selected, {
+      resolvedCallTime,
+    });
+
+    alert(`Duration Call: ${millisToMinutesAndSeconds(durationCall)}min.`);
+    this.setState({status: null});
   };
 
-  const _handlerSelectAlertUI = target => {
-    const notificationSection = getNotificationNode(target);
-    removeClassAlertActive(notificationSection);
-    addClassAlertSelected(notificationSection);
+  _callResolved = () => {
+    const {notification} = this.props;
+    return notification.resolvedCallTime - notification.acceptedCallTime >= 0;
   };
 
-  return (
-    <li
-      className='alertItem'
-      onClick={selectAlert}
-    >
-      <span>{normalizeDate(notification.timestamp)}</span>
-      <span>{notification.building}</span>
-      <span>{notification.doorStation}</span>
-      <span>{notification.operator}</span>
-      <span>{normalizeDate(notification.acceptedCallTime)}</span>
-      <span>{getDurationCall()}</span>
-      <span>{notification.alarmType}</span>
-    </li>
-  )
+  render() {
+    const {notification,} = this.props;
+    const {status} = this.state;
+
+    return (
+      <Row onClick={this.selectAlert} status={status}>
+        <TableCell component='th' scope='row'>{normalizeDate(notification.timestamp)}</TableCell>
+        <TableCell align='right'>{notification.building}</TableCell>
+        <TableCell align='right'>{notification.doorStation}</TableCell>
+        <TableCell align='right'>{notification.operator}</TableCell>
+        <TableCell align='right'>{normalizeDate(notification.acceptedCallTime)}</TableCell>
+        <TableCell align='right'>{this.getDurationCall()}</TableCell>
+        <TableCell align='right'>{notification.alarmType}</TableCell>
+        <TableCell align='right'>
+          {!this._callResolved() && (
+            < Button
+              variant='outlined'
+              color='primary'
+              size='small'
+              onClick={this.endCall}
+            >
+              Close
+            </Button>
+          )}
+        </TableCell>
+      </Row>
+    )
+  }
 }
+
+const mapStateToProps = ({
+                           notifications,
+                         }) => ({
+  notifications,
+});
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   updateNotification,
 }, dispatch);
 
-export default connect(null, mapDispatchToProps)(Alert);
+export default connect(mapStateToProps, mapDispatchToProps)(Alert);

@@ -45,7 +45,7 @@ function MainScreen({
 
       {/*Main screen*/}
       <main>
-     {/*   <NavigationPanel/>
+        {/*   <NavigationPanel/>
         <LeftPanel/>
         <MiddlePanel/>
         <RightPanel/>*/}
