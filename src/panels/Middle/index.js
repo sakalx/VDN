@@ -1,10 +1,18 @@
 import React from 'react';
 
+import Typography from '@material-ui/core/Typography';
+
+import {
+  Container
+} from './style';
+
 function MiddlePanel() {
   return (
-    <section>
-      <h1>Middle Panel</h1>
-    </section>
+    <Container>
+      <Typography variant={'display1'}>
+        Middle Panel
+      </Typography>
+    </Container>
   )
 }
 

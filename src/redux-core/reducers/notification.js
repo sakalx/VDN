@@ -16,7 +16,7 @@ const initNotification = {
   timestamp: null,
 };
 
-export default function notifications(state = initState, {type, payload}) {
+export default function(state = initState, {type, payload}) {
 
   switch (type) {
     case SET_NEW_NOTIFICATION:

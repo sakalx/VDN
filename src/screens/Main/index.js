@@ -4,11 +4,17 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {setNewNotification} from '../../redux-core/actions/notification';
 
+import Button from '@material-ui/core/Button';
 import NavigationPanel from '../../panels/Navigation';
 import LeftPanel from '../../panels/Left';
 import MiddlePanel from '../../panels/Middle';
 import RightPanel from '../../panels/Right';
 import AlertPanel from '../../panels/Alert';
+
+import {
+  Row,
+  MainSection,
+} from './style';
 
 const testData = {
   acceptedCallTime: null, //attended
@@ -20,36 +26,32 @@ const testData = {
   timestamp: +new Date(),
 };
 
-function MainScreen({
-                      setNewNotification,
-                    }) {
-
-  const getNewNotification = () => {
-    setNewNotification(testData)
-  };
-
+function MainScreen({setNewNotification}) {
   return (
-    <div className='center option animated fadeIn mainScrn'>
-      {/*Dummy view START*/}
-      VDM oMVC 0.0.1d
-      <button
-        className="btn"
-        onClick={() => console.log("Close Screen")}
+    <div>
+      {/*Dummy START*/}
+      <Button
+        variant={'contained'}
+        color={'secondary'}
+        onClick={() => setNewNotification(testData)}
+        size={'small'}
       >
-        Logout
-      </button>
-      <button className="alertBtn" onClick={getNewNotification}>
         Update
-      </button>
-      {/*Dummy view END*/}
-
-      {/*Main screen*/}
+      </Button>
+      {/*Dummy END*/}
       <main>
-        {/*   <NavigationPanel/>
-        <LeftPanel/>
-        <MiddlePanel/>
-        <RightPanel/>*/}
-        <AlertPanel/>
+        <NavigationPanel/>
+        <Row>
+          <LeftPanel/>
+          <MainSection>
+            {/*inline style temporary only for visualisation layout*/}
+            <Row style={{height: '200px'}}>
+              <MiddlePanel/>
+              <RightPanel/>
+            </Row>
+            <AlertPanel/>
+          </MainSection>
+        </Row>
       </main>
     </div>
   )

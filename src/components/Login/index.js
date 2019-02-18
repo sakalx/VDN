@@ -54,11 +54,9 @@ class Login extends React.Component {
   render() {
     return (
       <div>
-        <button
-          onClick={() => console.log('redirect to main screen')}
-          className='btn'>
-          Log In
-        </button>
+        <span
+          onClick={() => console.log('redirect to main screen')}>
+        </span>
       </div>
     );
 

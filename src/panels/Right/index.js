@@ -1,10 +1,18 @@
 import React from 'react';
 
+import Typography from '@material-ui/core/Typography';
+
+import {
+  Container
+} from './style';
+
 function RightPanel() {
   return (
-    <section>
-      <h1>Right Panel</h1>
-    </section>
+    <Container>
+      <Typography variant={'display1'}>
+        Right Panel
+      </Typography>
+    </Container>
   )
 }
 

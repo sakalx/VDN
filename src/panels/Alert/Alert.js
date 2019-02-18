@@ -9,13 +9,16 @@ import {
   millisToMinutesAndSeconds,
 } from '../../utils/time';
 
-import Button from '@material-ui/core/Button';
 import TableCell from '@material-ui/core/TableCell';
-import {Row} from './style';
+import CloseButton from './CloseButton';
 
-class Alert extends React.Component {
+import {
+  Row,
+} from './style';
+
+class Alert extends React.PureComponent {
   state = {
-    status: 'active', // or selected
+    status: 'active', // || selected
   };
 
   getDurationCall = () => {
@@ -30,55 +33,37 @@ class Alert extends React.Component {
       notification: {acceptedCallTime},
       updateNotification,
     } = this.props;
+
     if (acceptedCallTime > 1) return;
 
     updateNotification(selected, {
       acceptedCallTime: +new Date(),
     });
-
     this.setState({status: 'selected'});
   };
 
-  endCall = () => {
-    const {
-      selected,
-      notification: {acceptedCallTime},
-      updateNotification,
-    } = this.props;
-    const resolvedCallTime = +new Date();
-    const durationCall = resolvedCallTime - acceptedCallTime;
-
-    updateNotification(selected, {
-      resolvedCallTime,
-    });
-
-    alert(`Duration Call: ${millisToMinutesAndSeconds(durationCall)}min.`);
-    this.setState({status: null});
-  };
+  resetStatus = () => this.setState({status: null});
 
   render() {
-    const {notification,} = this.props;
+    const {notification, selected} = this.props;
     const {status} = this.state;
 
     return (
       <Row onClick={this.selectAlert} status={status}>
-        <TableCell component='th' scope='row'>{normalizeDate(notification.timestamp)}</TableCell>
+        <TableCell>{normalizeDate(notification.timestamp)}</TableCell>
         <TableCell align='right'>{notification.building}</TableCell>
         <TableCell align='right'>{notification.doorStation}</TableCell>
         <TableCell align='right'>{notification.operator}</TableCell>
         <TableCell align='right'>{normalizeDate(notification.acceptedCallTime)}</TableCell>
         <TableCell align='right'>{this.getDurationCall()}</TableCell>
         <TableCell align='right'>{notification.alarmType}</TableCell>
-        <TableCell align='right'>
+        <TableCell style={{minWidth: 90}}>
           {status === 'selected' && (
-            < Button
-              variant='outlined'
-              color='primary'
-              size='small'
-              onClick={this.endCall}
-            >
-              Close
-            </Button>
+            <CloseButton
+              selected={selected}
+              notification={notification}
+              resetStatus={this.resetStatus}
+            />
           )}
         </TableCell>
       </Row>
