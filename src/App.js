@@ -31,15 +31,14 @@ function App({getBuildingData, setNewNotification}) {
   }, []);
 
   const _addNewNotification = data => {
-    console.info('socket message: ', data);
     const testNotificationData = {
-      acceptedCallTime: data.attended, //attended
+      acceptedCallTime: null, //attended
       alarmType: data.alarmType,
-      building: data.building,
-      doorStation: data.doorstation,
+      building: 'Building 188 - 164 South Oxford Street', //data.building,
+      doorStation: data.doorStation,
       operator: data.operator,
       resolvedCallTime: null,
-      timestamp: data.timeStamp,
+      timestamp: +new Date(data.timeStamp),
     };
     setNewNotification(testNotificationData);
   };

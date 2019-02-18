@@ -12,9 +12,9 @@ export function getBuildingData() {
     payload: getBuilding(),
   }
 }
-export function setSelectedBuilding(id) {
+export function selectedBuilding(name) {
   return {
     type: SET_SELECTED_BUILDING,
-    payload: Number(id),
+    payload: name,
   }
 }

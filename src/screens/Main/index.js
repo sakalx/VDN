@@ -19,7 +19,7 @@ import {
 const testData = {
   acceptedCallTime: null, //attended
   alarmType: 'VDM CALL',
-  building: '135 5th Street',
+  building: 'Building 003 - 82 Irving Place',
   doorStation: 'Front Door',
   operator: 'tbrooks',
   resolvedCallTime: null,

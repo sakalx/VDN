@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
+import {selectedBuilding} from 'root/redux-core/actions/building';
 import {updateNotification} from 'root/redux-core/actions/notification';
 
 import {
@@ -19,6 +20,7 @@ import {
 function Alert({
                  selected,
                  notification,
+                 selectedBuilding,
                  updateNotification,
                }) {
   const [status, setStatus] = useState('active'); // || selected
@@ -28,18 +30,19 @@ function Alert({
     return millisToMinutesAndSeconds(durationCall);
   };
 
-  const selectAlert = () => {
+  const selectAlert = buildingName => () => {
     const {acceptedCallTime} = notification;
     if (acceptedCallTime > 1) return;
 
     updateNotification(selected, {
       acceptedCallTime: +new Date(),
     });
+    selectedBuilding(buildingName);
     setStatus('selected');
   };
 
   return (
-    <Row onClick={selectAlert} status={status}>
+    <Row onClick={selectAlert(notification.building)} status={status}>
       <TableCell>{normalizeDate(notification.timestamp)}</TableCell>
       <TableCell align='right'>{notification.building}</TableCell>
       <TableCell align='right'>{notification.doorStation}</TableCell>
@@ -65,6 +68,7 @@ const mapStateToProps = ({notifications}) => ({
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
+  selectedBuilding,
   updateNotification,
 }, dispatch);
 
