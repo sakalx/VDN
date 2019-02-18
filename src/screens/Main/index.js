@@ -2,14 +2,14 @@ import React from 'react';
 
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {setNewNotification} from '../../redux-core/actions/notification';
+import {setNewNotification} from 'root/redux-core/actions/notification';
 
 import Button from '@material-ui/core/Button';
-import NavigationPanel from '../../panels/Navigation';
-import LeftPanel from '../../panels/Left';
-import MiddlePanel from '../../panels/Middle';
-import RightPanel from '../../panels/Right';
-import AlertPanel from '../../panels/Alert';
+import NavigationPanel from 'root/panels/Navigation';
+import LeftPanel from 'root/panels/Left';
+import MiddlePanel from 'root/panels/Middle';
+import RightPanel from 'root/panels/Right';
+import AlertPanel from 'root/panels/Alert';
 
 import {
   Row,

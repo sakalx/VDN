@@ -2,10 +2,10 @@ import React from 'react';
 
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {updateNotification} from '../../redux-core/actions/notification';
-import {toggleSnackbar} from '../../redux-core/actions/snackbar';
+import {updateNotification} from 'root/redux-core/actions/notification';
+import {toggleSnackbar} from 'root/redux-core/actions/snackbar';
 
-import {millisToMinutesAndSeconds,} from '../../utils/time';
+import {millisToMinutesAndSeconds,} from 'root/utils/time';
 
 import Button from '@material-ui/core/Button';
 
@@ -14,7 +14,7 @@ function CloseButton({
                        notification,
                        updateNotification,
                        toggleSnackbar,
-                       resetStatus,
+                       setStatus,
                      }) {
 
   const endCall = () => {
@@ -26,7 +26,7 @@ function CloseButton({
     });
 
     toggleSnackbar(`Duration Call: ${millisToMinutesAndSeconds(durationCall)}min.`);
-    resetStatus();
+    setStatus(null);
   };
 
   return (

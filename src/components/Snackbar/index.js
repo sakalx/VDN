@@ -2,7 +2,7 @@ import React from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 
-import {toggleSnackbar} from '../../redux-core/actions/snackbar';
+import {toggleSnackbar} from 'root/redux-core/actions/snackbar';
 
 import Snackbar from '@material-ui/core/Snackbar';
 
@@ -18,7 +18,6 @@ const SnackbarMessage = ({
 
   return (
     <Snackbar
-      //anchorOrigin={{vertical: 'top', horizontal: 'center'}}
       open={openSnackBar}
       onClose={handleClose}
       autoHideDuration={2000}

@@ -4,6 +4,10 @@ export const promise = {
   FULFILLED: '_FULFILLED',
 };
 
+export const building = {
+  GET_BUILDING_DATA: 'GET_BUILDING_DATA',
+};
+
 export const notification = {
   SET_NEW_NOTIFICATION: 'SET_NEW_NOTIFICATION',
   UPDATE_NOTIFICATION: 'UPDATE_NOTIFICATION',

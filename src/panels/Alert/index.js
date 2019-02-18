@@ -29,9 +29,7 @@ function AlertPanel({notifications}) {
   );
 }
 
-const mapStateToProps = ({
-                           notifications,
-                         }) => ({
+const mapStateToProps = ({notifications}) => ({
   notifications,
 });
 
