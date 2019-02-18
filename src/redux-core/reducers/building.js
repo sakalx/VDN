@@ -8,10 +8,15 @@ const {
 
 const {
   GET_BUILDING_DATA,
+  SET_SELECTED_BUILDING,
 } = building;
 
 const initState = {
   data: [],
+  selected: {
+    ID: null,
+    NAME: '',
+  },
   error: null,
   fetching: false,
 };
@@ -38,6 +43,13 @@ export default function (state = initState, {type, payload}) {
         ...state,
         error: payload,
         fetching: false,
+      });
+
+    case SET_SELECTED_BUILDING:
+      const selected = state.data.find(({ID}) => ID === payload);
+      return ({
+        ...state,
+        selected,
       });
   }
 

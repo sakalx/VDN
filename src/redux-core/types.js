@@ -6,6 +6,7 @@ export const promise = {
 
 export const building = {
   GET_BUILDING_DATA: 'GET_BUILDING_DATA',
+  SET_SELECTED_BUILDING: 'SELECT_BUILDING',
 };
 
 export const notification = {

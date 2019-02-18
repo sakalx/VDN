@@ -1,7 +1,9 @@
 import React, {useState, useRef, useEffect} from 'react';
 import {findDOMNode} from 'react-dom';
 
+import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
+import {setSelectedBuilding} from 'root/redux-core/actions/building';
 
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -9,9 +11,8 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
 
-function SelectBuilding({building}) {
+function SelectBuilding({building, setSelectedBuilding}) {
   const [labelWidth, setLabelWidth] = useState(0);
-  const [buildingId, setBuildingId] = useState('');
   const inputLabelRef = useRef(null);
 
   useEffect(() => {
@@ -19,7 +20,8 @@ function SelectBuilding({building}) {
   }, []);
 
   const handleChange = ({target}) => {
-    setBuildingId(target.value);
+    const id = target.value;
+    setSelectedBuilding(id)
   };
 
   return (
@@ -29,7 +31,7 @@ function SelectBuilding({building}) {
       </InputLabel>
       <Select
         native
-        value={buildingId}
+        value={building.selected.ID || ''}
         onChange={handleChange}
         input={
           <OutlinedInput
@@ -51,4 +53,8 @@ const mapStateToProps = ({building}) => ({
   building,
 });
 
-export default connect(mapStateToProps, null)(SelectBuilding);
+const mapDispatchToProps = dispatch => bindActionCreators({
+  setSelectedBuilding,
+}, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(SelectBuilding);
