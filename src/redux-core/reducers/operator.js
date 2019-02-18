@@ -1,4 +1,4 @@
-import {promise, buildings} from '../types';
+import {promise, operators} from '../types';
 
 const {
   FULFILLED,
@@ -7,16 +7,11 @@ const {
 } = promise;
 
 const {
-  GET_BUILDING_DATA,
-  SET_SELECTED_BUILDING,
-} = buildings;
+  GET_OPERATORS_INFO,
+} = operators;
 
 const initState = {
   data: [],
-  selected: {
-    ID: null,
-    NAME: '',
-  },
   error: null,
   fetching: false,
 };
@@ -24,13 +19,13 @@ const initState = {
 export default function (state = initState, {type, payload}) {
 
   switch (type) {
-    case GET_BUILDING_DATA + PENDING:
+    case GET_OPERATORS_INFO + PENDING:
       return ({
         ...state,
         fetching: true,
       });
 
-    case GET_BUILDING_DATA + FULFILLED:
+    case GET_OPERATORS_INFO + FULFILLED:
       return ({
         ...state,
         error: null,
@@ -38,18 +33,11 @@ export default function (state = initState, {type, payload}) {
         data: payload,
       });
 
-    case GET_BUILDING_DATA + REJECTED:
+    case GET_OPERATORS_INFO + REJECTED:
       return ({
         ...state,
         error: payload,
         fetching: false,
-      });
-
-    case SET_SELECTED_BUILDING:
-      const selected = state.data.find(({NAME}) => NAME === payload) || state.selected;
-      return ({
-        ...state,
-        selected,
       });
   }
 

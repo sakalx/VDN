@@ -4,9 +4,13 @@ export const promise = {
   FULFILLED: '_FULFILLED',
 };
 
-export const building = {
+export const buildings = {
   GET_BUILDING_DATA: 'GET_BUILDING_DATA',
   SET_SELECTED_BUILDING: 'SELECT_BUILDING',
+};
+
+export const operators = {
+  GET_OPERATORS_INFO: 'GET_OPERATORS_INFO',
 };
 
 export const notification = {

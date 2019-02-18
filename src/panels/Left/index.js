@@ -1,6 +1,5 @@
 import React from 'react';
 
-import Typography from '@material-ui/core/Typography';
 import SelectBuilding from './SelectBuilding';
 
 import {
@@ -10,9 +9,6 @@ import {
 function LeftPanel() {
   return (
     <Container>
-      <Typography variant={'display1'}>
-        Left Panel
-      </Typography>
       <SelectBuilding/>
     </Container>
   )

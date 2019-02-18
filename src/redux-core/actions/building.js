@@ -1,10 +1,10 @@
-import getBuilding from 'root/api/getBuilding';
-import {building} from '../types';
+import getBuilding from 'root/api/getBuildings';
+import {buildings} from '../types';
 
 const {
   GET_BUILDING_DATA,
   SET_SELECTED_BUILDING,
-} = building;
+} = buildings;
 
 export function getBuildingData() {
   return {
