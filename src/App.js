@@ -1,9 +1,9 @@
 import React, {Component, PureComponent} from 'react';
 
 //Utility functions
-//import { getLogData } from './utils/getLogData.js'
-//import { getBuildingData } from './utils/getBuildingData.js'
-//import { getOpsData } from './utils/getOpsData.js'
+//import { getLogData } from './utils/logs.js'
+//import { getBuildingData } from './utils/building.js'
+//import { getOpsData } from './utils/operator.js'
 
 
 import Typography from '@material-ui/core/Typography';

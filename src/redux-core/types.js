@@ -1,3 +1,9 @@
+export const promise = {
+  PENDING: '_PENDING',
+  REJECTED: '_REJECTED',
+  FULFILLED: '_FULFILLED',
+};
+
 export const notification = {
   SET_NEW_NOTIFICATION: 'SET_NEW_NOTIFICATION',
   UPDATE_NOTIFICATION: 'UPDATE_NOTIFICATION',

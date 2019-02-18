@@ -90,15 +90,6 @@ const
   ],
   imgConfig = isProd ? imgProd : imgDev;
 
-const
-  jsonConfig = [
-    {
-      loader: 'file-loader',
-      options: {
-        name: '[name].[ext]',
-        outputPath: 'static/json',
-      },
-    }];
 //============================================================
 // WebPack
 const config = {
@@ -141,12 +132,6 @@ const config = {
         include: path.resolve(__dirname, `${develop}/static`),
         test: /\.(jpg|png)$/,
         use: imgConfig,
-      },
-      // JSON - via file-loader
-      {
-        include: path.resolve(__dirname, `${develop}/static/json`),
-        test: /\.(json)$/,
-        use: jsonConfig,
       },
     ],
   },
