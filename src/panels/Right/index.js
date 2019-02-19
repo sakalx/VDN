@@ -1,6 +1,6 @@
 import React from 'react';
 
-import TabsSection from './TabsSection';
+import TabsSection from 'root/components/TabsSection';
 
 import {
   Container

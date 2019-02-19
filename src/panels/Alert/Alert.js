@@ -15,6 +15,7 @@ import CloseButton from './CloseButton';
 
 import {
   Row,
+  Cell,
 } from './style';
 
 function Alert({
@@ -42,15 +43,15 @@ function Alert({
   };
 
   return (
-    <Row onClick={selectAlert(notification.building)} status={status}>
-      <TableCell>{normalizeDate(notification.timestamp)}</TableCell>
-      <TableCell align='right'>{notification.building}</TableCell>
-      <TableCell align='right'>{notification.doorStation}</TableCell>
-      <TableCell align='right'>{notification.operator}</TableCell>
-      <TableCell align='right'>{normalizeDate(notification.acceptedCallTime)}</TableCell>
-      <TableCell align='right'>{getDurationCall()}</TableCell>
-      <TableCell align='right'>{notification.alarmType}</TableCell>
-      <TableCell style={{minWidth: 90}}>
+    <Row onDoubleClick={selectAlert(notification.building)} status={status}>
+      <Cell>{normalizeDate(notification.timestamp)}</Cell>
+      <Cell>{notification.building}</Cell>
+      <Cell>{notification.doorStation}</Cell>
+      <Cell>{notification.operator}</Cell>
+      <Cell>{normalizeDate(notification.acceptedCallTime)}</Cell>
+      <Cell>{getDurationCall()}</Cell>
+      <Cell>{notification.alarmType}</Cell>
+      <Cell style={{minWidth: 90}}>
         {status === 'selected' && (
           <CloseButton
             selected={selected}
@@ -58,7 +59,7 @@ function Alert({
             setStatus={setStatus}
           />
         )}
-      </TableCell>
+      </Cell>
     </Row>
   )
 }

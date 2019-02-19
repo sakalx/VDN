@@ -1,6 +1,6 @@
 import React from 'react';
 
-import SelectBuilding from './SelectBuilding';
+import SelectBuilding from 'root/components/SelectBuilding';
 
 import {
   Container

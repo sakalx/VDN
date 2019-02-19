@@ -36,7 +36,7 @@ function CloseButton({
       size='small'
       onClick={endCall}
     >
-      Close
+      End Call
     </Button>
   )
 }

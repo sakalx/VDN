@@ -21,8 +21,8 @@ export default function(state = initState, {type, payload}) {
   switch (type) {
     case SET_NEW_NOTIFICATION:
       return ([
-        ...state,
         payload,
+        ...state,
       ]);
 
     case UPDATE_NOTIFICATION:

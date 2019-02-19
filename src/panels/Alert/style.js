@@ -2,6 +2,7 @@ import styled, {css} from 'styled-components'
 
 import Paper from '@material-ui/core/Paper';
 import TableRow from '@material-ui/core/TableRow';
+import TableCell from '@material-ui/core/TableCell';
 
 const activeBackgroundColor = '#cc554c';
 const selectedBackgroundColor = '#48cc92';
@@ -28,4 +29,8 @@ export const Row = styled(TableRow)`
     ${status === 'active' && `background: ${activeBackgroundColor};`}
     ${status === 'selected' && `background: ${selectedBackgroundColor};`}
   `}
+`;
+
+export const Cell = styled(TableCell)`
+  font-size: 12px !important;
 `;

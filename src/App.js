@@ -5,6 +5,7 @@ import socketIOClient from 'socket.io-client';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {getBuildingData} from './redux-core/actions/building';
+import {getOperatorsInfo} from './redux-core/actions/operator';
 import {setNewNotification} from './redux-core/actions/notification';
 
 import Typography from '@material-ui/core/Typography';
@@ -18,11 +19,16 @@ const socketEndPoint = {
 };
 
 
-function App({getBuildingData, setNewNotification}) {
+function App({
+               getBuildingData,
+               getOperatorsInfo,
+               setNewNotification,
+}) {
 
   useEffect(() => {
     // API COLLECT DATA
     getBuildingData();
+    getOperatorsInfo();
     const socket = socketIOClient(socketEndPoint.office2);
 
     socket.on('message', response => {
@@ -65,6 +71,7 @@ function App({getBuildingData, setNewNotification}) {
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   getBuildingData,
+  getOperatorsInfo,
   setNewNotification,
 }, dispatch);
 
