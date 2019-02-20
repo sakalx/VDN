@@ -29,22 +29,12 @@ const testData = {
 function MainScreen({setNewNotification}) {
   return (
     <div>
-      {/*Dummy START*/}
-      <Button
-        variant={'contained'}
-        color={'secondary'}
-        onClick={() => setNewNotification(testData)}
-        size={'small'}
-      >
-        Update
-      </Button>
-      {/*Dummy END*/}
-      <main>
+   {/*   <main>
         <NavigationPanel/>
         <Row>
           <LeftPanel/>
           <MainSection>
-            {/*inline style temporary only for visualisation layout*/}
+            // inline style temporary only for visualisation layout
             <Row style={{height: '200px'}}>
               <MiddlePanel/>
               <RightPanel/>
@@ -52,7 +42,8 @@ function MainScreen({setNewNotification}) {
             <AlertPanel/>
           </MainSection>
         </Row>
-      </main>
+      </main>*/}
+      <AlertPanel/>
     </div>
   )
 }
