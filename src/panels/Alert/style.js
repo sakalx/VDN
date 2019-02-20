@@ -21,13 +21,13 @@ export const Row = styled(TableRow)`
   
   && td {
      ${({status}) => status && css`
-        ${status === 'active' && `color: #fff;`}
+        ${status.pending && `color: #fff;`}
       `}
   };
-  
+
   ${({status}) => status && css`
-    ${status === 'active' && `background: ${activeBackgroundColor};`}
-    ${status === 'selected' && `background: ${selectedBackgroundColor};`}
+    ${status.pending && `background: ${activeBackgroundColor};`}
+    ${status.selected && `background: ${selectedBackgroundColor};`}
   `}
 `;
 

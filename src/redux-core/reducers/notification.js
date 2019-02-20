@@ -16,7 +16,7 @@ const initNotification = {
   timestamp: null,
 };
 
-export default function(state = initState, {type, payload}) {
+export default function (state = initState, {type, payload}) {
 
   switch (type) {
     case SET_NEW_NOTIFICATION:
@@ -34,7 +34,18 @@ export default function(state = initState, {type, payload}) {
       };
       newState[index] = newData;
 
-      return newState;
+      /* Trick sorting:
+        first: all pending calls
+        then: all accepted calls
+        then: all resolved calls
+    */
+      const sortedNotifications = newState
+        .sort((a, b) => {
+          if (!a.acceptedCallTime) return -1;
+          return a.resolvedCallTime - b.resolvedCallTime
+        });
+
+      return sortedNotifications;
   }
 
   return state;

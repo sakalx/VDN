@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
@@ -10,7 +10,6 @@ import {
   millisToMinutesAndSeconds,
 } from 'root/utils/time';
 
-import TableCell from '@material-ui/core/TableCell';
 import CloseButton from './CloseButton';
 
 import {
@@ -24,7 +23,6 @@ function Alert({
                  selectedBuilding,
                  updateNotification,
                }) {
-  const [status, setStatus] = useState('active'); // || selected
 
   const getDurationCall = () => {
     const durationCall = notification.resolvedCallTime - notification.acceptedCallTime;
@@ -39,11 +37,17 @@ function Alert({
       acceptedCallTime: +new Date(),
     });
     selectedBuilding(buildingName);
-    setStatus('selected');
   };
 
+  const isSelected = notification.acceptedCallTime > 0 && notification.resolvedCallTime === null;
+
   return (
-    <Row onDoubleClick={selectAlert(notification.building)} status={status}>
+    <Row onDoubleClick={selectAlert(notification.building)}
+         status={{
+           pending: notification.acceptedCallTime === null,
+           selected: isSelected,
+         }}
+    >
       <Cell>{normalizeDate(notification.timestamp)}</Cell>
       <Cell>{notification.building}</Cell>
       <Cell>{notification.doorStation}</Cell>
@@ -52,11 +56,10 @@ function Alert({
       <Cell>{getDurationCall()}</Cell>
       <Cell>{notification.alarmType}</Cell>
       <Cell style={{minWidth: 90}}>
-        {status === 'selected' && (
+        {isSelected && (
           <CloseButton
             selected={selected}
             notification={notification}
-            setStatus={setStatus}
           />
         )}
       </Cell>

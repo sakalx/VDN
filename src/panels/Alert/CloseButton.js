@@ -13,8 +13,7 @@ function CloseButton({
                        selected,
                        notification,
                        updateNotification,
-                       toggleSnackbar,
-                       setStatus,
+                       toggleSnackbar
                      }) {
 
   const endCall = () => {
@@ -26,7 +25,6 @@ function CloseButton({
     });
 
     toggleSnackbar(`Duration Call: ${millisToMinutesAndSeconds(durationCall)}min.`);
-    setStatus(null);
   };
 
   return (
