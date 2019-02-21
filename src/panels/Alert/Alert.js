@@ -5,10 +5,7 @@ import {connect} from 'react-redux';
 import {selectedBuilding} from 'root/redux-core/actions/building';
 import {updateNotification} from 'root/redux-core/actions/notification';
 
-import {
-  normalizeDate,
-  millisToMinutesAndSeconds,
-} from 'root/utils/time';
+import time from 'root/utils/time';
 
 import CloseButton from './CloseButton';
 
@@ -26,7 +23,7 @@ function Alert({
 
   const getDurationCall = () => {
     const durationCall = notification.resolvedCallTime - notification.acceptedCallTime;
-    return millisToMinutesAndSeconds(durationCall);
+    return time.millisToMinutesAndSeconds(durationCall);
   };
 
   const selectAlert = buildingName => () => {
@@ -48,11 +45,11 @@ function Alert({
            selected: isSelected,
          }}
     >
-      <Cell>{normalizeDate(notification.timestamp)}</Cell>
+      <Cell>{time.normalizeDate(notification.timestamp)}</Cell>
       <Cell>{notification.building}</Cell>
       <Cell>{notification.doorStation}</Cell>
       <Cell>{notification.operator}</Cell>
-      <Cell>{normalizeDate(notification.acceptedCallTime)}</Cell>
+      <Cell>{time.normalizeDate(notification.acceptedCallTime)}</Cell>
       <Cell>{getDurationCall()}</Cell>
       <Cell>{notification.alarmType}</Cell>
       <Cell style={{minWidth: 90}}>

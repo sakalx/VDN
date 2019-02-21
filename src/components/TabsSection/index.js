@@ -6,7 +6,7 @@ import Tab from '@material-ui/core/Tab';
 
 import ActionTab from './ActionTab';
 import DeviceMonitorTab from './DeviceMonitorTab';
-import OperatorsTab from './OperatorsTab';
+import OperatorsTab from './Operators';
 
 
 function TabsSection() {

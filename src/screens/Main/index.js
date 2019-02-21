@@ -30,7 +30,7 @@ function MainScreen() {
           </MainSection>
         </Row>
       </main>*/}
-      <AlertPanel/>
+      <RightPanel/>
     </div>
   )
 }
