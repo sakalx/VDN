@@ -1,5 +1,7 @@
 import {promise, operators} from '../types';
 
+import string from 'root/utils/string';
+
 const {
   FULFILLED,
   PENDING,
@@ -26,6 +28,12 @@ export default function (state = initState, {type, payload}) {
       });
 
     case GET_OPERATORS_INFO + FULFILLED:
+      payload.sort(({LIVE_AGENT_STATUS}) => {
+        const status = string.removeUnderscore(LIVE_AGENT_STATUS);
+        if (status === 'Online') return -1;
+        return 0;
+      });
+
       return ({
         ...state,
         error: null,
