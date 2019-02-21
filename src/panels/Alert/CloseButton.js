@@ -16,7 +16,7 @@ function CloseButton({
                        toggleSnackbar
                      }) {
 
-  const endCall = () => {
+  const handleEndCall = () => {
     const resolvedCallTime = +new Date();
     const durationCall = resolvedCallTime - notification.acceptedCallTime;
 
@@ -32,7 +32,7 @@ function CloseButton({
       variant='outlined'
       color='primary'
       size='small'
-      onClick={endCall}
+      onClick={handleEndCall}
     >
       End Call
     </Button>

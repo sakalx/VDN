@@ -26,7 +26,7 @@ function Alert({
     return time.millisToMinutesAndSeconds(durationCall);
   };
 
-  const selectAlert = buildingName => () => {
+  const handleSelectAlert = buildingName => () => {
     const {acceptedCallTime} = notification;
     if (acceptedCallTime > 1) return;
 
@@ -39,7 +39,7 @@ function Alert({
   const isSelected = notification.acceptedCallTime > 0 && notification.resolvedCallTime === null;
 
   return (
-    <Row onDoubleClick={selectAlert(notification.building)}
+    <Row onDoubleClick={handleSelectAlert(notification.building)}
          status={{
            pending: notification.acceptedCallTime === null,
            selected: isSelected,

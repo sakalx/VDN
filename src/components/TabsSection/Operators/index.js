@@ -1,7 +1,6 @@
 import React from 'react';
 
 import {connect} from 'react-redux';
-import {Row} from "root/panels/Alert/style";
 
 import string from 'root/utils/string';
 
@@ -15,12 +14,6 @@ import {
 } from './style';
 
 function OperatorsTab({operators}) {
-
-  // status={{
-  //   pending: notification.acceptedCallTime === null,
-  //     selected: isSelected,
-  // }}
-
   return (
     <List>
       {operators.data.map(({ID, LOGIN_NAME, LIVE_AGENT_STATUS}) => {

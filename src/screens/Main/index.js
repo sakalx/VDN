@@ -14,24 +14,20 @@ import {
 
 function MainScreen() {
   return (
-    <div>
-      {/*Dummy END*/}
-   {/*   <main>
-        <NavigationPanel/>
-        <Row>
-          <LeftPanel/>
-          <MainSection>
-            // inline style temporary only for visualisation layout
-            <Row style={{height: '200px'}}>
-              <MiddlePanel/>
-              <RightPanel/>
-            </Row>
-            <AlertPanel/>
-          </MainSection>
-        </Row>
-      </main>*/}
-      <RightPanel/>
-    </div>
+    <main>
+      <NavigationPanel/>
+      <Row>
+        <LeftPanel/>
+        <MainSection>
+         {/*inline style temporary only for visualisation layout*/}
+          <Row style={{height: '350px'}}>
+            <MiddlePanel/>
+            <RightPanel/>
+          </Row>
+          <AlertPanel/>
+        </MainSection>
+      </Row>
+    </main>
   )
 }
 

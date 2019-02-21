@@ -2,12 +2,15 @@ import React from 'react';
 
 import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
+//import Tab from '@material-ui/core/Tab';
 
 import ActionTab from './ActionTab';
 import DeviceMonitorTab from './DeviceMonitorTab';
 import OperatorsTab from './Operators';
 
+import {
+  Tab,
+} from './style';
 
 function TabsSection() {
   const [value, setValue] = React.useState(0);
@@ -24,7 +27,7 @@ function TabsSection() {
             onChange={handleChange}
       >
         <Tab label='Operators'/>
-        <Tab label='Device health monitor'/>
+        <Tab label='Device monitor'/>
         <Tab label='Action'/>
       </Tabs>
       {value === 0 && <OperatorsTab/>}
