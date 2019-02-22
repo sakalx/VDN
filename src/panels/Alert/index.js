@@ -12,7 +12,7 @@ import {
 } from './style'
 
 function AlertPanel({notifications}) {
-  console.log(notifications);
+
   return (
     <Container>
       <Table>

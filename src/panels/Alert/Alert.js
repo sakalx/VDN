@@ -1,16 +1,12 @@
-import React, {useState} from 'react';
+import React from 'react';
 
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {selectedBuilding} from 'root/redux-core/actions/building';
 import {updateNotification} from 'root/redux-core/actions/notification';
 
-import {
-  normalizeDate,
-  millisToMinutesAndSeconds,
-} from 'root/utils/time';
+import time from 'root/utils/time';
 
-import TableCell from '@material-ui/core/TableCell';
 import CloseButton from './CloseButton';
 
 import {
@@ -24,14 +20,13 @@ function Alert({
                  selectedBuilding,
                  updateNotification,
                }) {
-  const [status, setStatus] = useState('active'); // || selected
 
   const getDurationCall = () => {
     const durationCall = notification.resolvedCallTime - notification.acceptedCallTime;
-    return millisToMinutesAndSeconds(durationCall);
+    return time.millisToMinutesAndSeconds(durationCall);
   };
 
-  const selectAlert = buildingName => () => {
+  const handleSelectAlert = buildingName => () => {
     const {acceptedCallTime} = notification;
     if (acceptedCallTime > 1) return;
 
@@ -39,24 +34,29 @@ function Alert({
       acceptedCallTime: +new Date(),
     });
     selectedBuilding(buildingName);
-    setStatus('selected');
   };
 
+  const isSelected = notification.acceptedCallTime > 0 && notification.resolvedCallTime === null;
+
   return (
-    <Row onDoubleClick={selectAlert(notification.building)} status={status}>
-      <Cell>{normalizeDate(notification.timestamp)}</Cell>
+    <Row onDoubleClick={handleSelectAlert(notification.building)}
+         status={{
+           pending: notification.acceptedCallTime === null,
+           selected: isSelected,
+         }}
+    >
+      <Cell>{time.normalizeDate(notification.timestamp)}</Cell>
       <Cell>{notification.building}</Cell>
       <Cell>{notification.doorStation}</Cell>
       <Cell>{notification.operator}</Cell>
-      <Cell>{normalizeDate(notification.acceptedCallTime)}</Cell>
+      <Cell>{time.normalizeDate(notification.acceptedCallTime)}</Cell>
       <Cell>{getDurationCall()}</Cell>
       <Cell>{notification.alarmType}</Cell>
       <Cell style={{minWidth: 90}}>
-        {status === 'selected' && (
+        {isSelected && (
           <CloseButton
             selected={selected}
             notification={notification}
-            setStatus={setStatus}
           />
         )}
       </Cell>
