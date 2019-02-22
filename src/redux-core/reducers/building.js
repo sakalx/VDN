@@ -46,7 +46,7 @@ export default function (state = initState, {type, payload}) {
       });
 
     case SET_SELECTED_BUILDING:
-      const selected = state.data.find(({NAME}) => NAME === payload) || state.selected;
+      const selected = state.data.find(({NAME}) => NAME === payload) || initState.selected;
       return ({
         ...state,
         selected,
